@@ -27,7 +27,7 @@ double GetHeight() const;
 class UTexture2D* RenderPageSync(FPDFVector2D Start, FPDFVector2D Size, FLinearColor BackgroundColor, EPDFPageOrientation Orientation, const TSet<EPDFFlags>& Flags);
 ```
 
-### `RenderPageBitampSync`
+### `RenderPageBitmapSync`
 - Renders the page to a binary buffer.
 - param Start The start position to render the page.
 - param Size The size of the rendered page in pixel.
@@ -35,7 +35,7 @@ class UTexture2D* RenderPageSync(FPDFVector2D Start, FPDFVector2D Size, FLinearC
 - param Flags Optional flags for the rendering.
 - return Bitmap data of the rendered page.
 ```cpp
-TArray<uint8> RenderPageBitampSync(FPDFVector2D Start, FPDFVector2D Size, FLinearColor BackgroundColor, EPDFPageOrientation Orientation, const TSet<EPDFFlags>& Flags);
+TArray<uint8> RenderPageBitmapSync(FPDFVector2D Start, FPDFVector2D Size, FLinearColor BackgroundColor, EPDFPageOrientation Orientation, const TSet<EPDFFlags>& Flags);
 ```
 
 ### `RenderPage`
