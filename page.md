@@ -39,7 +39,7 @@ TArray<uint8> RenderPageBitmapSync(FPDFVector2D Start, FPDFVector2D Size, FLinea
 ```
 
 ### `RenderPage`
-* Renders the page to a texture.
+- Renders the page to a texture.
 - param Start The start position to render the page.
 - param Size The size of the rendered page in pixel.
 - param Orientation The orientation of the page.

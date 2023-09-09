@@ -149,8 +149,8 @@ End Object
 ### **3.1.** Setup the variables
 
 Add two new variables:
-1. `PDFDocument` of type `UPDFDocument`: contain the loaded PDF Document object.
-2. `CurrentPage` of type `int32`: contain the current page index.
+1. `PDFDocument` of type `UPDFDocument`: contains the loaded PDF Document object.
+2. `CurrentPage` of type `int32`: contains the current page index.
 
 <div class="centered">
 <img src="_images/PDFViewerVariables.png" />
