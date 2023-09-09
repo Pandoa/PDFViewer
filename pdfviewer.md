@@ -1,14 +1,6 @@
 # Create a PDF Viewer (in UMG)
 
-This section shows how to create a PDF viewer widget.
-
-<div class="centered">
-
-![Guid Result](_images/PDFViewerResult.png)
-
-The widget created in this guide.
-
-</div>
+This section shows how to create a PDF viewer in the world.
 
 ## **1.** Create the Widget
 
