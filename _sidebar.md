@@ -3,6 +3,7 @@
   - [Show a PDF in the World](/world)
   - [Create a PDF Viewer](/pdfviewer)
   - [Create a PDF Viewer in the World](/pdfviewerworld)
+  - [Download & Show a PDF](/downloadpdf.md)
 
 - API
   - [Document](/document)
