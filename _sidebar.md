@@ -10,6 +10,6 @@
   - [Page](/page)
 
 - Support
-  - [Troubleshoting](/troubleshoting)
+  - [Troubleshooting](/troubleshoting)
   - [Contact](/support)
 
