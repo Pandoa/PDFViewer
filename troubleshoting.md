@@ -1,5 +1,5 @@
 
-# Troubleshoting
+# Troubleshooting
 
 ## Common Issues
 
