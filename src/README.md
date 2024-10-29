@@ -12,7 +12,7 @@ Or explore the API:
 1. [Document](/document)
 2. [Page](/page)
 
-If you have a problem with the plugin, see the [troubleshoting section](/troubleshoting). 
+If you have a problem with the plugin, see the [troubleshooting section](/troubleshoting). 
 
 <div class="centered">
 
