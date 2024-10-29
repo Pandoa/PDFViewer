@@ -4,7 +4,7 @@ This section shows how to create a PDF viewer widget.
 
 <div class="centered">
 
-
+![](_images/Result3D.png)
 
 The widget created in this guide.
 
@@ -16,7 +16,7 @@ Start by creating an actor blueprints. Right click in the content browser and se
 
 <div class="centered">
 
-![](./_images/CreateBlueprint.png)
+![Create a blueprint](./_images/CreateBlueprint.png)
 </div>
 
 
@@ -24,14 +24,14 @@ Select `Actor` as parent class.
 
 <div class="centered">
 
-![](./_images/CreateActor.png)
+![Create an actor](./_images/CreateActor.png)
 </div>
 
 
 Give a name to the newly created actor.
 <div class="centered">
 
-![](./_images/NameActor.png)
+![Name an actor](./_images/NameActor.png)
 </div>
 
 ## **2.** Setup the Actor
