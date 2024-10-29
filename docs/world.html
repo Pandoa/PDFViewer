@@ -1,0 +1,1694 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>Show a PDF in the World | PDFViewer</title>
+    <link rel="icon" href="_media/favicon.webp">
+    <meta name="keywords" content="doc,docs,documentation,gitbook,PDF,Viewer,features,unreal,engine">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="description" content="Documentation for the PDF Viewer plugin available on the Unreal Engine Marketplace.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <link rel="icon" href="favicon.png">
+  <meta property="og:title" content="PDFViewer Documentation">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pandoa.github.io/PDFViewer/">
+	<script type="application/ld+json">{"@context":"https://schema.org/","@type":"TechArticle","headline":"PDFViewer for Unreal Engine","name":"PDFViewer for Unreal Engine","description":"The most popular PDF Viewer plugin for Unreal Engine. Load and show PDFs in Unreal Engine in 2D or 3D.","author":{"@type":"Person","name":"Pandores","url":"https://www.fab.com/sellers/Pandores"},"publisher":{"@type":"Organization","name":"Pandores Marketplace","logo":{"@type":"ImageObject","url":"https://pandoa.github.io/WebSocketServer/_media/icon.svg"}},"proficiencyLevel":"Beginner","datePublished":"2024-10-28T23:56:18.091Z","mainEntityOfPage":"https://pandoa.github.io/WebSocketServer/"}</script>
+  <style>
+	:root {--theme-color: #70a2ff }
+	html, body, .content {background: #121212}
+	.markdown-section a {color:#fd8ce5;font-weight:400;}
+		* {
+			-webkit-font-smoothing: antialiased;
+			-webkit-overflow-scrolling: touch;
+			-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+			-webkit-text-size-adjust: none;
+			-webkit-touch-callout: none;
+			box-sizing: border-box
+		}
+		body:not(.ready) {
+			overflow: hidden
+		}
+		body:not(.ready) .app-nav,
+		body:not(.ready)>nav,
+		body:not(.ready) [data-cloak] {
+			display: none
+		}
+		div#app {
+			font-size: 30px;
+			font-weight: lighter;
+			margin: 40vh auto;
+			text-align: center
+		}
+		div#app:empty:before {
+			content: "Loading..."
+		}
+		img.emoji {
+			height: 1.2em
+		}
+		img.emoji,
+		span.emoji {
+			vertical-align: middle
+		}
+		span.emoji {
+			font-family: Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+			font-size: 1.2em
+		}
+		.progress {
+			background-color: #ea6f5a;
+			background-color: var(--theme-color, #ea6f5a);
+			height: 2px;
+			left: 0;
+			position: fixed;
+			right: 0;
+			top: 0;
+			transition: width .2s, opacity .4s;
+			width: 0;
+			z-index: 999999
+		}
+		.search .search-keyword,
+		.search a:hover {
+			color: #ea6f5a;
+			color: var(--theme-color, #ea6f5a)
+		}
+		.search .search-keyword {
+			font-style: normal;
+			font-weight: 700
+		}
+		body,
+		html {
+			height: 100%
+		}
+		body {
+			-moz-osx-font-smoothing: grayscale;
+			-webkit-font-smoothing: antialiased;
+			color: #c8c8c8;
+			font-family: system-ui, Source Sans Pro, Helvetica Neue, Arial, sans-serif;
+			font-size: 15px;
+			letter-spacing: 0;
+			margin: 0;
+			overflow-x: hidden
+		}
+		img {
+			max-width: 100%
+		}
+		a[disabled] {
+			cursor: not-allowed;
+			opacity: .6
+		}
+		kbd {
+			border: 1px solid #ccc;
+			border-radius: 3px;
+			display: inline-block;
+			font-size: 12px !important;
+			line-height: 12px;
+			margin-bottom: 3px;
+			padding: 3px 5px;
+			vertical-align: middle
+		}
+		li input[type=checkbox] {
+			margin: 0 .2em .25em 0;
+			vertical-align: middle
+		}
+		.app-nav {
+			margin: 25px 60px 0 0;
+			position: absolute;
+			right: 0;
+			text-align: right;
+			z-index: 10
+		}
+		.app-nav.no-badge {
+			margin-right: 25px
+		}
+		.app-nav p {
+			margin: 0
+		}
+		.app-nav>a {
+			margin: 0 1rem;
+			padding: 5px 0
+		}
+		.app-nav li,
+		.app-nav ul {
+			display: inline-block;
+			list-style: none;
+			margin: 0
+		}
+		.app-nav a {
+			color: inherit;
+			font-size: 16px;
+			text-decoration: none;
+			transition: color .3s
+		}
+		.app-nav a.active,
+		.app-nav a:hover {
+			color: #ea6f5a;
+			color: var(--theme-color, #ea6f5a)
+		}
+		.app-nav a.active {
+			border-bottom: 2px solid #ea6f5a;
+			border-bottom: 2px solid var(--theme-color, #ea6f5a)
+		}
+		.app-nav li {
+			display: inline-block;
+			margin: 0 1rem;
+			padding: 5px 0;
+			position: relative;
+			cursor: pointer
+		}
+		.app-nav li ul {
+			background-color: #fff;
+			border: 1px solid;
+			border-color: #ddd #ddd #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;
+			display: none;
+			max-height: calc(100vh - 61px);
+			overflow-y: auto;
+			padding: 10px 0;
+			position: absolute;
+			right: -15px;
+			text-align: left;
+			top: 100%;
+			white-space: nowrap
+		}
+		.app-nav li ul li {
+			display: block;
+			font-size: 14px;
+			line-height: 1rem;
+			margin: 8px 14px;
+			white-space: nowrap
+		}
+		.app-nav li ul a {
+			display: block;
+			font-size: inherit;
+			margin: 0;
+			padding: 0
+		}
+		.app-nav li ul a.active {
+			border-bottom: 0
+		}
+		.app-nav li:hover ul {
+			display: block
+		}
+		.github-corner {
+			border-bottom: 0;
+			position: fixed;
+			right: 0;
+			text-decoration: none;
+			top: 0;
+			z-index: 1
+		}
+		.github-corner:hover .octo-arm {
+			animation: octocat-wave .56s ease-in-out
+		}
+		.github-corner svg {
+			color: #3f3f3f;
+			fill: #ea6f5a;
+			fill: var(--theme-color, #ea6f5a);
+			height: 80px;
+			width: 80px
+		}
+		.markdown-section iframe.video {
+			border-radius:14px;
+			border:2px solid black;
+			width: 100%;
+  		aspect-ratio: 16 / 9;
+		}
+		main {
+			display: block;
+			position: relative;
+			width: 100vw;
+			height: 100%;
+			z-index: 0
+		}
+		main.hidden {
+			display: none
+		}
+		.anchor {
+			display: inline-block;
+			text-decoration: none;
+			transition: all .3s
+		}
+		.anchor span {
+			color: #c8c8c8
+		}
+		.anchor:hover {
+			text-decoration: underline
+		}
+		.sidebar {
+			border-right: 1px solid rgba(0, 0, 0, .07);
+			overflow-y: auto;
+			padding: 40px 0 0;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			transition: transform .25s ease-out;
+			width: 300px;
+			z-index: 20
+		}
+		.sidebar>h1 {
+			margin: 0 auto 1rem;
+			font-size: 1.5rem;
+			font-weight: 300;
+			text-align: center;
+			font-weight: 600;
+			border-bottom: 2px solid #080808;
+			padding-bottom: 30px;
+		}
+		.sidebar>h1 a {
+			color: inherit;
+			text-decoration: none
+		}
+		.sidebar>h1 .app-nav {
+			display: block;
+			position: static
+		}
+		.sidebar .sidebar-nav {
+			line-height: 2em;
+			padding-bottom: 40px
+		}
+		.sidebar li.collapse .app-sub-sidebar {
+			display: none
+		}
+		.sidebar ul {
+			margin: 0 0 0 15px;
+			padding: 0
+		}
+		.sidebar li>p {
+			font-weight: 700;
+			margin: 0
+		}
+		.sidebar ul,
+		.sidebar ul li {
+			list-style: none
+		}
+		.sidebar ul li a {
+			border-bottom: none;
+			display: block
+		}
+		.sidebar ul li ul {
+			padding-left: 20px
+		}
+		.sidebar::-webkit-scrollbar {
+			width: 4px
+		}
+		.sidebar::-webkit-scrollbar-thumb {
+			background: transparent;
+			border-radius: 4px
+		}
+		.sidebar:hover::-webkit-scrollbar-thumb {
+			background: hsla(0, 0%, 53.3%, .4)
+		}
+		.sidebar:hover::-webkit-scrollbar-track {
+			background: hsla(0, 0%, 53.3%, .1)
+		}
+		.sidebar-toggle {
+			background-color: transparent;
+			background-color: rgba(63, 63, 63, .8);
+			border: 0;
+			outline: none;
+			padding: 10px;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			text-align: center;
+			transition: opacity .3s;
+			width: 284px;
+			z-index: 30;
+			cursor: pointer;
+			border-radius: 3px;
+		}
+		body.close .sidebar-toggle {
+		}
+		.sidebar-toggle:hover .sidebar-toggle-button {
+			opacity: .4
+		}
+		.sidebar-toggle span {
+			background-color: #ea6f5a;
+			background-color: var(--theme-color, #ea6f5a);
+			display: block;
+			margin-bottom: 4px;
+			width: 16px;
+			height: 2px
+		}
+		body.sticky .sidebar,
+		body.sticky .sidebar-toggle {
+			position: fixed
+		}
+		.content {
+			padding-top: 60px;
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 300px;
+			transition: left .25s ease
+		}
+		.markdown-section {
+			margin: 0 auto;
+			max-width: 80%;
+			padding: 30px 15px 40px;
+			position: relative
+		}
+		.markdown-section>* {
+			box-sizing: border-box;
+			font-size: inherit
+		}
+		.markdown-section>:first-child {
+			margin-top: 0 !important
+		}
+		.markdown-section hr {
+			border: none;
+			border-bottom: 1px solid #eee;
+			margin: 2em 0
+		}
+		.markdown-section iframe {
+			border: 1px solid #eee;
+			width: 1px;
+			min-width: 100%
+		}
+		.markdown-section table {
+			border-collapse: collapse;
+			border-spacing: 0;
+			display: block;
+			margin-bottom: 1rem;
+			overflow: auto;
+			width: 100%
+		}
+		.markdown-section th {
+			font-weight: 700
+		}
+		.markdown-section td,
+		.markdown-section th {
+			border: 1px solid #ddd;
+			padding: 6px 13px
+		}
+		.markdown-section tr {
+			border-top: 1px solid #ccc
+		}
+		.markdown-section p.tip,
+		.markdown-section tr:nth-child(2n) {
+			background-color: #f8f8f8
+		}
+		.markdown-section p.tip {
+			border-bottom-right-radius: 2px;
+			border-left: 4px solid #f66;
+			border-top-right-radius: 2px;
+			margin: 2em 0;
+			padding: 12px 24px 12px 30px;
+			position: relative
+		}
+		code.lang-ini span.token.section-name.selector {
+			color: #bbb;
+		}
+		.markdown-section p.tip:before {
+			background-color: #f66;
+			border-radius: 100%;
+			color: #3f3f3f;
+			content: "!";
+			font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', Source Sans Pro, Helvetica Neue, Arial, sans-serif;
+			font-size: 14px;
+			font-weight: 700;
+			left: -12px;
+			line-height: 20px;
+			position: absolute;
+			height: 20px;
+			width: 20px;
+			text-align: center;
+			top: 14px
+		}
+		.markdown-section p.tip code {
+			background-color: #efefef
+		}
+		.markdown-section p.tip em {
+			color: #c8c8c8
+		}
+		.markdown-section p.warn {
+			background: rgba(234, 111, 90, .1);
+			border-radius: 2px;
+			padding: 1rem
+		}
+		.markdown-section ul.task-list>li {
+			list-style-type: none
+		}
+		body.close .sidebar {
+			transform: translateX(-300px)
+		}
+		body.close .sidebar-toggle {
+			width: auto
+		}
+		body.close .content {
+			left: 0
+		}
+		@media print {
+			.app-nav,
+			.github-corner,
+			.sidebar,
+			.sidebar-toggle {
+				display: none
+			}
+		}
+		@media screen and (max-width:768px) {
+			.github-corner,
+			.sidebar,
+			.sidebar-toggle {
+				position: fixed
+			}
+			.app-nav {
+				margin-top: 16px
+			}
+			.app-nav li ul {
+				top: 30px
+			}
+			main {
+				height: auto;
+				min-height: 100vh;
+				overflow-x: hidden
+			}
+			.sidebar {
+				left: -300px;
+				transition: transform .25s ease-out
+			}
+			.content {
+				left: 0;
+				max-width: 100vw;
+				position: static;
+				padding-top: 20px;
+				transition: transform .25s ease
+			}
+			.app-nav,
+			.github-corner {
+				transition: transform .25s ease-out
+			}
+			.sidebar-toggle {
+				background-color: transparent;
+				width: auto;
+				padding: 30px 30px 10px 10px
+			}
+			body.close .sidebar {
+				transform: translateX(300px)
+			}
+			body.close .sidebar-toggle {
+				background-color: rgba(63, 63, 63, .8);
+				transition: background-color 1s;
+				width: 284px;
+				padding: 10px
+			}
+			body.close .content {
+				transform: translateX(300px)
+			}
+			body.close .app-nav,
+			body.close .github-corner {
+				display: none
+			}
+			.github-corner:hover .octo-arm {
+				animation: none
+			}
+			.github-corner .octo-arm {
+				animation: octocat-wave .56s ease-in-out
+			}
+		}
+		@keyframes octocat-wave {
+			0%,
+			to {
+				transform: rotate(0)
+			}
+			20%,
+			60% {
+				transform: rotate(-25deg)
+			}
+			40%,
+			80% {
+				transform: rotate(10deg)
+			}
+		}
+		section.cover {
+			position: relative;
+			align-items: center;
+			background-position: 50%;
+			background-repeat: no-repeat;
+			background-size: cover;
+			min-height: 100vh;
+			width: 100%;
+			display: none
+		}
+		section.cover.show {
+			display: flex
+		}
+		section.cover.has-mask .mask {
+			background-color: #3f3f3f;
+			opacity: .8;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			width: 100%
+		}
+		section.cover .cover-main {
+			flex: 1;
+			margin: 0 16px;
+			text-align: center;
+			position: relative
+		}
+		section.cover a {
+			color: inherit
+		}
+		section.cover a,
+		section.cover a:hover {
+			text-decoration: none
+		}
+		section.cover p {
+			line-height: 1.5rem;
+			margin: 1em 0
+		}
+		section.cover h1 {
+			color: inherit;
+			font-size: 2.5rem;
+			font-weight: 300;
+			margin: .625rem 0 2.5rem;
+			position: relative;
+			text-align: center
+		}
+		section.cover h1 a {
+			display: block
+		}
+		section.cover h1 small {
+			bottom: -.4375rem;
+			font-size: 1rem;
+			position: absolute
+		}
+		section.cover blockquote {
+			font-size: 1.5rem;
+			text-align: center
+		}
+		section.cover ul {
+			line-height: 1.8;
+			list-style-type: none;
+			margin: 1em auto;
+			max-width: 500px;
+			padding: 0
+		}
+		section.cover .cover-main>p:last-child a {
+			border-radius: 2rem;
+			border: 1px solid #ea6f5a;
+			border-color: var(--theme-color, #ea6f5a);
+			box-sizing: border-box;
+			color: #ea6f5a;
+			color: var(--theme-color, #ea6f5a);
+			display: inline-block;
+			font-size: 1.05rem;
+			letter-spacing: .1rem;
+			margin: .5rem 1rem;
+			padding: .75em 2rem;
+			text-decoration: none;
+			transition: all .15s ease
+		}
+		section.cover .cover-main>p:last-child a:last-child {
+			background-color: #ea6f5a;
+			background-color: var(--theme-color, #ea6f5a);
+			color: #fff
+		}
+		section.cover .cover-main>p:last-child a:last-child:hover {
+			color: inherit;
+			opacity: .8
+		}
+		section.cover .cover-main>p:last-child a:hover {
+			color: inherit
+		}
+		section.cover blockquote>p>a {
+			border-bottom: 2px solid #ea6f5a;
+			border-bottom: 2px solid var(--theme-color, #ea6f5a);
+			transition: color .3s
+		}
+		section.cover blockquote>p>a:hover {
+			color: #ea6f5a;
+			color: var(--theme-color, #ea6f5a)
+		}
+		.sidebar,
+		body {
+			background-color: #3f3f3f
+		}
+		.sidebar {
+			color: #c8c8c8
+		}
+		.sidebar li {
+			margin: 6px 15px 6px 0
+		}
+		.sidebar ul li a {
+			color: #c8c8c8;
+			font-size: 14px;
+			overflow: hidden;
+			text-decoration: none;
+			text-overflow: ellipsis;
+			white-space: nowrap
+		}
+		.sidebar ul li a:hover {
+			text-decoration: underline
+		}
+		.sidebar ul li ul {
+			padding: 0
+		}
+		.sidebar ul li.active>a {
+			color: #ea6f5a;
+			color: var(--theme-color, #ea6f5a);
+			font-weight: 600
+		}
+		.markdown-section h1,
+		.markdown-section h2,
+		.markdown-section h3,
+		.markdown-section h4,
+		.markdown-section strong {
+			color: #b1cfda;
+			font-weight: 600
+		}
+		.markdown-section a {
+			color: #ea6f5a;
+			color: var(--theme-color, #ea6f5a);
+			font-weight: 600
+		}
+		.markdown-section h1 {
+			font-size: 2rem;
+			margin: 0 0 1rem
+		}
+		.markdown-section h2 {
+			font-size: 1.75rem;
+			margin: 45px 0 .8rem
+		}
+		.markdown-section h3 {
+			font-size: 1.5rem;
+			margin: 40px 0 .6rem
+		}
+		.markdown-section h4 {
+			font-size: 1.25rem
+		}
+		.markdown-section h5 {
+			font-size: 1rem
+		}
+		.markdown-section h6 {
+			color: #777;
+			font-size: 1rem
+		}
+		.markdown-section figure,
+		.markdown-section ol,
+		.markdown-section p,
+		.markdown-section ul {
+			margin: 1.2em 0
+		}
+		.markdown-section ol,
+		.markdown-section p,
+		.markdown-section ul {
+			line-height: 1.6rem;
+			word-spacing: .05rem
+		}
+		.markdown-section ol,
+		.markdown-section ul {
+			padding-left: 1.5rem
+		}
+		.markdown-section blockquote {
+			border-left: 4px solid #ea6f5a;
+			border-left: 4px solid var(--theme-color, #ea6f5a);
+			color: #858585;
+			margin: 2em 0;
+			padding-left: 20px
+		}
+		.markdown-section blockquote p {
+			font-weight: 600;
+			margin-left: 0
+		}
+		.markdown-section iframe {
+			margin: 1em 0
+		}
+		.markdown-section em {
+			color: #f5feff;
+		}
+		.markdown-section code {
+			background-color: #282828;
+			border-radius: 2px;
+			color: #657b83;
+			font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace, Roboto Mono, Monaco, courier, monospace;
+			margin: 0 2px;
+			padding: 3px 5px;
+			white-space: pre-wrap
+		}
+		.markdown-section>:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) code {
+			font-size: .8rem
+		}
+		.markdown-section pre {
+			-moz-osx-font-smoothing: initial;
+			-webkit-font-smoothing: initial;
+			background-color: #282828;
+			font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace, Roboto Mono, Monaco, courier, monospace;
+			line-height: 1.5rem;
+			margin: 1.2em 0;
+			overflow: auto;
+			padding: 0 1.4rem;
+			position: relative;
+			word-wrap: normal
+		}
+		.token.cdata,
+		.token.comment,
+		.token.doctype,
+		.token.prolog {
+			color: #8e908c
+		}
+		.token.namespace {
+			opacity: .7
+		}
+		.token.boolean,
+		.token.number {
+			color: #c76b29
+		}
+		.token.punctuation {
+			color: #525252
+		}
+		.token.property {
+			color: #c08b30
+		}
+		.token.tag {
+			color: #2973b7
+		}
+		.token.string {
+			color: #ea6f5a;
+			color: var(--theme-color, #ea6f5a)
+		}
+		.token.selector {
+			color: #6679cc
+		}
+		.token.attr-name {
+			color: #2973b7
+		}
+		.language-css .token.string,
+		.style .token.string,
+		.token.entity,
+		.token.url {
+			color: #22a2c9
+		}
+		.token.attr-value,
+		.token.control,
+		.token.directive,
+		.token.unit {
+			color: #ea6f5a;
+			color: var(--theme-color, #ea6f5a)
+		}
+		.token.keyword {
+			color: #e96900
+		}
+		.token.atrule,
+		.token.regex,
+		.token.statement {
+			color: #22a2c9
+		}
+		.token.placeholder,
+		.token.variable {
+			color: #3d8fd1
+		}
+		.token.deleted {
+			text-decoration: line-through
+		}
+		.token.inserted {
+			border-bottom: 1px dotted #202746;
+			text-decoration: none
+		}
+		.token.italic {
+			font-style: italic
+		}
+		.token.bold,
+		.token.important {
+			font-weight: 700
+		}
+		.token.important {
+			color: #c94922
+		}
+		.token.entity {
+			cursor: help
+		}
+		.markdown-section pre>code {
+			-moz-osx-font-smoothing: initial;
+			-webkit-font-smoothing: initial;
+			background-color: #282828;
+			border-radius: 2px;
+			color: #657b83;
+			display: block;
+			font-family: Monaco, Roboto Mono, courier, monospace;
+			font-size: .8rem;
+			line-height: inherit;
+			margin: 0 2px;
+			max-width: inherit;
+			overflow: inherit;
+			padding: 2.2em 5px;
+			white-space: inherit
+		}
+		.markdown-section code:after,
+		.markdown-section code:before {
+			letter-spacing: .05rem
+		}
+		code .token {
+			-moz-osx-font-smoothing: initial;
+			-webkit-font-smoothing: initial;
+			min-height: 1.5rem;
+			position: relative;
+			left: auto
+		}
+		pre:after {
+			color: #ccc;
+			content: attr(data-lang);
+			font-size: .6rem;
+			font-weight: 600;
+			height: 15px;
+			line-height: 15px;
+			padding: 5px 10px 0;
+			position: absolute;
+			right: 0;
+			text-align: right;
+			top: 0
+		}
+		.markdown-section p.tip {
+			background-color: #282828;
+			color: #657b83
+		}
+		input[type=search] {
+			background: #4f4f4f;
+			border-color: #4f4f4f;
+			color: #c8c8c8
+		}
+	</style>
+	<style>
+		:root {
+			--theme-color: #ce82ff;
+		}
+		html,
+		body,
+		.content {
+			background: #101010
+		}
+		.markdown-section a {
+			color: var(--theme-color);
+			font-weight: 400
+		}
+		.sidebar {
+			background-color: #202020
+		}
+		textarea {
+			display: none
+		}
+		.sidebar a.section-link {
+			font-size: 0.8em
+		}
+		.app-sub-sidebar li>a.section-link {
+			color: var(--theme-color)
+		}
+		.app-sub-sidebar li {
+			margin: 0
+		}
+		.markdown-section code {
+			color: var(--theme-color);
+		}
+		.markdown-section h3 {
+			margin: 20px 0 0
+		}
+		.markdown-section p.tip {
+			border-left: 4px solid #E6AD43;
+			color: #bbb;
+			border-radius: 6px
+		}
+		.markdown-section p.tip:before {
+			background: var(--theme-color)
+		}
+		.markdown-section p.tip code {
+			color: var(--theme-color);
+			background-color: #333
+		}
+		.markdown-section blockquote p {
+			padding: 10px;
+			color: white;
+		}
+		.markdown-section blockquote {
+			background: linear-gradient(0.25turn, #039BE5aa, #ce82ff);
+			border-radius: 4px;
+			box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%)
+		}
+		.markdown-section pre {
+			border-radius: 12px
+		}
+		.markdown-section pre>code {
+			color: #eee;
+			line-height: 18px
+		}
+		.markdown-section p.tip,
+		.markdown-section tr:nth-child(2n) {
+			background: #222
+		}
+		.markdown-section p.warn {
+			border: 1px solid #bF7F7F;
+			color: white;
+			border-radius: 6px
+		}
+		.markdown-section td,
+		.markdown-section th {
+			border: 1px solid #555
+		}
+		.token.class-name {
+			color: #70d997
+		}
+		.token.function {
+			color: #efefbf
+		}
+		.token.keyword {
+			color: #569cd6
+		}
+		.token.comment {
+			color: #aaa
+		}
+		.token.punctuation {
+			color: #999
+		}
+		.token.attr-name {
+			color: #4993e7
+		}
+		.token.tag {
+			color: #a8caff
+		}
+		.token.string {
+			color: magenta
+		}
+		.sidebar ul>li>a {
+			color: #888
+		}
+		.token.punctuation.annotation {
+			color: #666
+		}
+		.sidebar-toggle {
+			width: 300px;
+			background: #555;
+			transition: width 0.2s linear
+		}
+		.sidebar-nav>ul>li>ul>li {
+			margin: 0
+		}
+		.token.attr-value,
+		.token.control,
+		.token.unit {
+			color: magenta
+		}
+		.token.directive {
+			color: #ADC8D6
+		}
+		body.close .sidebar-toggle {
+			width: 36px
+		}
+		h4 {
+			margin-block-end: 0.33em;
+			margin-block-start: 0.66em
+		}
+		h5 {
+			margin-block-start: 1em;
+			margin-block-end: 0
+		}
+		.markdown-section h5 {
+			font-size: 1.1rem
+		}
+		thead {
+			background: #333
+		}
+		.markdown-section code {
+			border-radius: 8px !important;
+		}
+		.markdown-section p.tip {
+			padding-left: 60px;
+		}
+		.markdown-section p.tip:before {
+			font-size: 10px;
+			font-weight: bolder;
+			left: 20px;
+			top: calc(50% - 10px);
+			line-height: 15px;
+			height: 20px;
+			width: 20px;
+			content: url(_svgs/warn.svg);
+			background: none;
+		}
+		.anchor span {
+			font-weight: 600
+		}
+		::-webkit-scrollbar {
+			width: 6px;
+			height: 6px;
+		}
+		::-webkit-scrollbar-track {
+			background: none;
+		}
+		::-webkit-scrollbar-thumb {
+			background: #777;
+			border-radius: 6px;
+		}
+		::-webkit-scrollbar-thumb:hover {
+			background: #555;
+		}
+		::marker {
+			color: #999;
+			font-weight: 100
+		}
+		@media screen and (max-width: 768px) {
+			.sidebar-toggle {
+				width: auto
+			}
+		}
+		.cpp>pre,
+		img {
+			border-radius: 16px;
+			box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+			border: 1px solid black;
+		}
+		.switcher,
+		img,
+		.sidebar {
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+			-webkit-user-drag: none;
+			-khtml-user-drag: none;
+			-moz-user-drag: none;
+			-o-user-drag: none;
+			user-drag: none;
+		}
+		.bpcode {
+			align-items: center;
+			display: flex;
+			flex-direction: column;
+		}
+		.bpcode>button {
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+			border: 1px solid white;
+			background: rgba(18, 18, 18, 0.1);
+			color: white;
+			padding: 10px 20px;
+			border-radius: 5px;
+			cursor: pointer;
+			width: 150px;
+			height: 40px;
+			position: relative;
+			top: -40px;
+			opacity: 0;
+			transition: opacity 0.2s ease-in-out, top 0.2s ease-in-out, background 0.2s ease-in-out;
+		}
+		.bpcode:hover>button {
+			opacity: 0.7;
+			top: -60px;
+		}
+		.bpcode:hover>button:hover {
+			background: rgba(255, 255, 255, 0.05)
+		}
+		.bpcode:hover>button:active {
+			background: rgba(255, 255, 255, 0.1)
+		}
+		.adblock-container {
+			position: fixed;
+			z-index: 9999;
+			border: 1px solid #bF7F7F;
+			color: white;
+			background: #281b19;
+			padding: 25px;
+			right: 20px;
+			top: 20px;
+			filter: drop-shadow(0 0 0.75rem black);
+			display: none;
+			border-radius: 10px;
+		}
+		.adblock-container>div:first-child {
+			font-weight: bolder; 
+			font-size: 1.5rem;
+			margin-bottom:10px;
+			font-size: 18px;
+			margin: 0;
+			display: block;
+		}
+		.adblock-container>div {
+			color: #ddd;
+		}
+		.adblock-container>button {
+			position: absolute;
+			top: 0;
+			right: 0;
+			background: none;
+			border: none;
+			color: #bF7F7F;
+			cursor: pointer;
+		}
+		.code-switcher {
+			background: #333;
+			padding: 20px 30px;
+			border-radius: 12px;
+			position: relative;
+			border-top-right-radius: 0;
+			margin: 40px 0;
+		}
+		.switcher {
+			position: absolute;
+			right: 0;
+			top: -24px;
+		}
+		.sw-bp,
+		.sw-cpp {
+			padding: 5px 10px;
+			background: #333;
+			color: #bbb;
+			transition: background 0.2s ease-in-out;
+		}
+		.sw-bp:hover,
+		.sw-cpp:hover {
+			background: #222;
+			cursor: pointer;
+		}
+		.sw-cpp {
+			border-top-right-radius: 5px;
+			-border-bottom-right-radius: 5px;
+		}
+		.sw-bp {
+			border-top-left-radius: 5px;
+			-border-bottom-left-radius: 5px;
+		}
+		.code-switcher .bp {
+			margin: 20px 10px;
+		}
+		.code-switcher.show-cpp-false .bp,
+		.code-switcher.show-cpp-true .cpp {
+			display: block;
+		}
+		.code-switcher.show-cpp-false .cpp,
+		.code-switcher.show-cpp-true .bp {
+			display: none;
+		}
+		.code-switcher.show-cpp-false .switcher .sw-cpp,
+		.code-switcher.show-cpp-true .switcher .sw-bp {
+			background: #202020;
+		}
+		.centered {
+			text-align: center;
+			margin: 30px 0;
+		}
+		.token.ue-macro {
+			color: #ADA8E6;
+		}
+		.token.ue-class {
+			color: #70d997;
+		}
+		.bp .bpcode {
+			margin-bottom: 0;
+			position: relative;
+		}
+		.bp .bpcode>button {
+			position: absolute;
+			bottom: 20px;
+			top: unset;
+		}
+		input:focus-visible {
+			outline: none;
+		}
+		table {
+			border: 1px solid #555;
+			border-collapse: collapse;
+			-border-radius: 14px;
+		}
+		.markdown-section table {
+			width: fit-content;
+		}
+		.markdown-section td:last-child,
+		.markdown-section th:last-child {
+			border-right: none;
+		}
+		.markdown-section td:first-child,
+		.markdown-section th:first-child {
+			border-left: none;
+		}
+		.markdown-section th,
+		.markdown-section tr {
+			border-top: none;
+		}
+		.markdown-section tr:last-child,
+		.markdown-section tr:last-child>td {
+			border-bottom: none;
+		}
+		.markdown-section pre>code,
+		.markdown-section pre {
+			background-color: #181818;
+		}
+		.fb-elem>img {
+			box-shadow: none;
+		}
+		.markdown-section td {
+			padding: 10px 15px;
+		}
+		.work-container {
+			display: none
+		}
+		.ue-button:hover {
+			filter: invert(0);
+		}
+		.markdown-section p.warn {
+			border-radius: 12px;
+		}
+		.ue-button {
+			transition: 0.25s ease-in-out;
+			border: 3px solid #f2f2f2;
+			font-weight: bolder !important;
+			background: #ddd;
+			border-radius: 8px;
+			color: black !important;
+			text-decoration: none;
+			padding: 20px 22px;
+			margin-right: 10px;
+			font-size: 1.2rem;
+			filter: invert(1) drop-shadow(0 0 0.75rem #00000055);
+		}
+		.ue-button img {
+			margin-left: 5px;
+			border-radius: 0;
+			border: none;
+			box-shadow: none;
+			vertical-align: middle;
+		}
+		.work-container {
+			position: fixed;
+			z-index: 9999;
+			border: 1px solid #bFbF7F;
+			color: white;
+			background: #282b19;
+			padding: 20px;
+			right: 10px;
+			top: 10px;
+		}
+		.work-container>h1 {
+			font-size: 18px;
+			margin: 0;
+			display: block;
+		}
+		.work-container>div {
+			color: #ddd;
+		}
+		.work-container>button {
+			position: absolute;
+			top: 0;
+			right: 0;
+			background: none;
+			border: none;
+			color: #bFbF7F;
+			cursor: pointer;
+		}
+		@media (max-width: 600px) {
+			.code-switcher {
+				padding: 8px 10px;
+			}
+			.markdown-section {
+				max-width: 95%
+			}
+		}
+		@media (max-width: 660px) {
+			a .fb {
+				border-radius: 0;
+				border-width: 0;
+				width: 70px;
+				height: 70px;
+			}
+			a .fb-txt {
+				font-size: 1rem;
+				display: none;
+			}
+			a.fb-elem {
+				margin: 5px;
+			}
+		}
+		@media (max-width: 330px) {
+			a .fb {
+				width: 50px;
+				height: 50px;
+			}
+		}
+		.fb {
+			border-radius: 0;
+			border-width: 0;
+			width: 100px;
+			height: 100px;
+		}
+		.fb-elem {
+			display: flex;
+			flex-direction: column;
+			justify-content: middle;
+			align-items: center;
+			transition: 0.3s ease-in-out;
+			cursor: pointer;
+			margin: 20px 3%;
+			text-decoration: none !important;
+		}
+		.fb-txt {
+			margin-top: 10px;
+			font-size: 1.1rem;
+		}
+		.fb-elem:hover {
+			transform: scale(1.05);
+		}
+		.fb-f-cont {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-around;
+			align-items: center;
+			flex-wrap: wrap;
+			margin: 0 8%;
+		}
+	</style>
+<script>
+	function copyBlueprintCode(button) {
+		button.innerHTML = "Copied!";
+		setTimeout(() => { button.innerHTML = "Copy Code" }, 5000);
+		var c = button.parentNode.children[0];
+		c.style.display = "block";
+		c.select();
+		document.execCommand("copy");
+		c.style.display = "none";
+	}</script><script>
+	var bShowCPP = false;
+	function switchCode() {
+		bShowCPP = !bShowCPP;
+		var elems = document.getElementsByClassName('code-switcher');
+		for (var i = 0; i < elems.length; ++i) {
+			elems[i].classList.remove('show-cpp-' + !bShowCPP);
+			elems[i].classList.add('show-cpp-' + bShowCPP);
+		}
+		setCookie('bShowCPP', bShowCPP, 7);
+	}
+	function switchCpp() {
+		bShowCPP = false;
+		switchCode();
+	}
+	function switchBp() {
+		bShowCPP = true;
+		switchCode();
+	}
+	function setCookie(name, value, days) {
+		var expires = "";
+		if (days) {
+			var date = new Date();
+			date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+			expires = "; expires=" + date.toUTCString();
+		}
+		document.cookie = name + "=" + value + expires + "; path=/";
+	}
+	function getCookie(name) {
+		var nameEQ = name + "=";
+		var ca = document.cookie.split(';');
+		for (var i = 0; i < ca.length; i++) {
+			var c = ca[i];
+			while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+			if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+		}
+		return null;
+	}
+	function changeSelectedCode() {
+		setTimeout(() => {
+			bShowCPP = !JSON.parse(getCookie('bShowCPP'));
+			switchCode();
+		}, 0);
+	}
+	bShowCPP = JSON.parse(getCookie('bShowCPP'));
+</script><style type="text/css">.docsify-pagination-container{display:flex;flex-wrap:wrap;justify-content:space-between;overflow:hidden;margin:5em 0 1em;border-top:1px solid rgba(0,0,0,.07)}.pagination-item{margin-top:2.5em}.pagination-item a,.pagination-item a:hover{text-decoration:none}.pagination-item a{color:currentColor}.pagination-item a:hover .pagination-item-title{text-decoration:underline}.pagination-item:not(:last-child) a .pagination-item-label,.pagination-item:not(:last-child) a .pagination-item-subtitle,.pagination-item:not(:last-child) a .pagination-item-title{opacity:.3;transition:all .2s}.pagination-item:last-child .pagination-item-label,.pagination-item:not(:last-child) a:hover .pagination-item-label{opacity:.6}.pagination-item:not(:last-child) a:hover .pagination-item-title{opacity:1}.pagination-item-label{font-size:.8em}.pagination-item-label>*{line-height:1;vertical-align:middle}.pagination-item-label svg{height:.8em;width:auto;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1px}.pagination-item--next{margin-left:auto;text-align:right}.pagination-item--next svg{margin-left:.5em}.pagination-item--previous svg{margin-right:.5em}.pagination-item-title{font-size:1.6em}.pagination-item-subtitle{text-transform:uppercase;opacity:.3}</style></head>
+
+<body data-page="world.md" class="ready sticky"><main><button class="sidebar-toggle" aria-label="Menu"><div class="sidebar-toggle-button"><span></span><span></span><span></span></div></button><aside class="sidebar"><h1 class="app-name"><a class="app-name-link" data-nosearch="" href=".">PDF Viewer</a></h1><div class="sidebar-nav"><ul><li><p>Quick Start</p><ul><li><a href="umg" title="Show a PDF in UMG">Show a PDF in UMG</a></li><li class="active"><a href="world" title="Show a PDF in the World">Show a PDF in the World</a><ul class="app-sub-sidebar"><li><a class="section-link" href="world.html#_1-create-an-actor" title="1. Create an Actor"><strong>1.</strong> Create an Actor</a></li><li><a class="section-link" href="world.html#_2-create-the-material" title="2. Create the Material"><strong>2.</strong> Create the Material</a></li><li><a class="section-link" href="world.html#_3-render-the-pdf" title="3. Render the PDF"><strong>3.</strong> Render the PDF</a></li><li><a class="section-link" href="world.html#_4-place-the-actor" title="4. Place the Actor"><strong>4.</strong> Place the Actor</a></li></ul></li><li><a href="pdfviewer" title="Create a PDF Viewer">Create a PDF Viewer</a></li><li><a href="pdfviewerworld" title="Create a PDF Viewer in the World">Create a PDF Viewer in the World</a></li><li><a href="downloadpdf" title="Download &amp; Show a PDF">Download &amp; Show a PDF</a></li></ul></li><li><p>API</p><ul><li><a href="document" title="Document">Document</a></li><li><a href="page" title="Page">Page</a></li></ul></li><li><p>Support</p><ul><li><a href="troubleshoting" title="Troubleshoting">Troubleshoting</a></li><li><a href="support" title="Contact">Contact</a></li></ul></li></ul></div></aside><section class="content"><article class="markdown-section" id="main"><h1 id="render-a-pdf-in-the-world"><a href="world.html#render-a-pdf-in-the-world" data-id="render-a-pdf-in-the-world" class="anchor"><span>Render a PDF in the World</span></a></h1><p>This section shows how to load and render a PDF to show it in the World. It uses a material to render the material texture on a mesh.</p><div class="centered">
+<p><img src="././_images/Result3D.png" data-origin="./_images/Result3D.png" alt=""></p><div class="img-caption">The result after this guide</div>
+</div>
+<h2 id="_1-create-an-actor"><a href="world.html#_1-create-an-actor" data-id="_1-create-an-actor" class="anchor"><span><strong>1.</strong> Create an Actor</span></a></h2><p>To place something in the world, we need an actor.</p><p>Start by right clicking in the content browser and select <code>Blueprint Class</code>.</p><div class="centered">
+<p><img src="././_images/CreateBlueprint.png" data-origin="./_images/CreateBlueprint.png" alt=""></p></div>
+<p>Select <code>Actor</code> as parent class.</p><div class="centered">
+<p><img src="././_images/CreateActor.png" data-origin="./_images/CreateActor.png" alt=""></p></div>
+<p>Finish the creation by giving a name to the actor.</p><div class="centered">
+<p><img src="././_images/NameActor.png" data-origin="./_images/NameActor.png" alt=""></p></div>
+<p>Open the actor and add a <code>Plane</code> component.</p><div class="centered">
+<p><img src="././_images/AddPlaneToActor.png" data-origin="./_images/AddPlaneToActor.png" alt=""></p></div>
+<blockquote>
+<p>Planes make it easy to have a flat surface but the same can be done for any other meshes.</p></blockquote>
+<h2 id="_2-create-the-material"><a href="world.html#_2-create-the-material" data-id="_2-create-the-material" class="anchor"><span><strong>2.</strong> Create the Material</span></a></h2><p>Right click in the content browser and select <code>Material</code>.</p><div class="centered">
+<p><img src="././_images/CreateMaterial.png" data-origin="./_images/CreateMaterial.png" alt=""></p></div>
+<p>Finish the creation by giving a name to the material.</p><div class="centered">
+<p><img src="././_images/NameMaterial.png" data-origin="./_images/NameMaterial.png" alt=""></p></div>
+<p>Open the material by double clicking it. And in the material details panel, switch the Shading Model to <code>Unlit</code>.</p><div class="centered">
+<p><img src="././_images/UnlitMaterial.png" data-origin="./_images/UnlitMaterial.png" alt=""></p></div>
+<p class="tip"><code>Unlit</code> makes the material ignore shadow and lighting to always be seen in clear. Keep it <code>Default Lit</code> to have shadow affect the PDF.</p><p>In the material graph, add a <code>TextureSampleParameter2D</code> node with parameter name <code>PDF_Texture</code> to have the code shown below.</p><p class="tip">If the pin <code>Emissive Color</code> is disabled, it means your shading model is not <code>Unlit</code>. You can connect it to <code>Base Color</code> instead.</p><div class="bpcode">
+<textarea readonly="">Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_3" ExportPath=/Script/UnrealEd.MaterialGraphNode'"/Engine/Transient.MAT_PDF:MaterialGraph_0.MaterialGraphNode_3"'
+   Begin Object Class=/Script/Engine.MaterialExpressionTextureSampleParameter2D Name="MaterialExpressionTextureSampleParameter2D_2" ExportPath=/Script/Engine.MaterialExpressionTextureSampleParameter2D'"/Engine/Transient.MAT_PDF:MaterialGraph_0.MaterialGraphNode_3.MaterialExpressionTextureSampleParameter2D_2"'
+   End Object
+   Begin Object Name="MaterialExpressionTextureSampleParameter2D_2" ExportPath=/Script/Engine.MaterialExpressionTextureSampleParameter2D'"/Engine/Transient.MAT_PDF:MaterialGraph_0.MaterialGraphNode_3.MaterialExpressionTextureSampleParameter2D_2"'
+      ParameterName="PDF_Texture"
+      ExpressionGUID=3E4536C34EF2E354C7A999AFD4CBDC0D
+      MaterialExpressionEditorX=-192
+      MaterialExpressionEditorY=96
+      MaterialExpressionGuid=C7BDA102413EC3A7FFFB8A9658E68001
+      Material=/Script/UnrealEd.PreviewMaterial'"/Engine/Transient.MAT_PDF"'
+   End Object
+   MaterialExpression=/Script/Engine.MaterialExpressionTextureSampleParameter2D'"MaterialExpressionTextureSampleParameter2D_2"'
+   NodePosX=-192
+   NodePosY=96
+   AdvancedPinDisplay=Hidden
+   bCanRenameNode=True
+   NodeGuid=A88A0A764B6B38FD8331A1B2142E7A30
+   CustomProperties Pin (PinId=6585E4F647241D99A9FF3596D2BA9B61,PinName="UVs",PinType.PinCategory="optional",PinType.PinSubCategory="byte",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="0",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=2DF67714499CEF40DB7DB28A0107EC35,PinName="Apply View MipBias",PinType.PinCategory="optional",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=E08D633142DCBF89114DAD8EB70FC806,PinName="MipValueMode",PinType.PinCategory="optional",PinType.PinSubCategory="byte",PinType.PinSubCategoryObject=/Script/CoreUObject.Enum'"/Script/Engine.ETextureMipValueMode"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="None (use computed mip level)",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=True,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=True,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=2BF43F154D368AF139664D8EC67AABEB,PinName="Sampler Source",PinType.PinCategory="optional",PinType.PinSubCategory="byte",PinType.PinSubCategoryObject=/Script/CoreUObject.Enum'"/Script/Engine.ESamplerSourceMode"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="From texture asset",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=True,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=True,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=CB34546844101E27C75072AE3A9C85C3,PinName="Sampler Type",PinType.PinCategory="optional",PinType.PinSubCategory="byte",PinType.PinSubCategoryObject=/Script/CoreUObject.Enum'"/Script/Engine.EMaterialSamplerType"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="Color",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=True,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=True,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=FB74134F446DFEBA6BFF9C892E76017C,PinName="RGB",Direction="EGPD_Output",PinType.PinCategory="mask",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(MaterialGraphNode_Root_2 1B4A40974425A689DA2E129139AED7AE,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=B21099A644CD58D566F74F8D58E7E549,PinName="R",Direction="EGPD_Output",PinType.PinCategory="mask",PinType.PinSubCategory="red",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=E109262449A2F5D0CFA5B8844C22D621,PinName="G",Direction="EGPD_Output",PinType.PinCategory="mask",PinType.PinSubCategory="green",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=28BD6C104B682994357167B3E53BCC66,PinName="B",Direction="EGPD_Output",PinType.PinCategory="mask",PinType.PinSubCategory="blue",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=050851D2409744536C42C7882D2DE9A1,PinName="A",Direction="EGPD_Output",PinType.PinCategory="mask",PinType.PinSubCategory="alpha",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=19F25E074DDA748EB4DC0795FF2D249A,PinName="RGBA",Direction="EGPD_Output",PinType.PinCategory="mask",PinType.PinSubCategory="rgba",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+</textarea>
+<img src="_images/PDFMaterial.png">
+<button onclick="copyBlueprintCode(this)">Copy Code</button>
+</div>
+<blockquote>
+<p>You can copy the code by clicking on the <code>Copy Code</code> button on the image.</p></blockquote>
+<h2 id="_3-render-the-pdf"><a href="world.html#_3-render-the-pdf" data-id="_3-render-the-pdf" class="anchor"><span><strong>3.</strong> Render the PDF</span></a></h2><p>Open the actor created in step <code>1</code> and add the following code to generate a texture of the first page. </p><p class="tip">This code loads the PDF and renders the first page at resolution <code>1080x1920</code> (portrait of 16:9). If the rendered document is too blurry, this value can be increased. Try to keep it as low as possible for better performances.</p><div class="bpcode">
+<textarea readonly="">Begin Object Class=/Script/BlueprintGraph.K2Node_Event Name="K2Node_Event_3" ExportPath=/Script/BlueprintGraph.K2Node_Event'"/Game/Demo/MyActor.MyActor:EventGraph.K2Node_Event_3"'
+   EventReference=(MemberParent=/Script/CoreUObject.Class'"/Script/Engine.Actor"',MemberName="ReceiveBeginPlay")
+   bOverrideFunction=True
+   NodePosX=-528
+   NodePosY=-10
+   NodeGuid=C88345FF432E6E97BB26E090E0C68D37
+   CustomProperties Pin (PinId=ECBE162A4D550B00A44C398F6A95CD45,PinName="OutputDelegate",Direction="EGPD_Output",PinType.PinCategory="delegate",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(MemberParent=/Script/CoreUObject.Class'"/Script/Engine.Actor"',MemberName="ReceiveBeginPlay"),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=070EA8BF447C038A4B3529827BFDDC79,PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_AsyncAction_0 D31D8AD841390F975CA648A9678BEACA,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_AsyncAction Name="K2Node_AsyncAction_0" ExportPath=/Script/BlueprintGraph.K2Node_AsyncAction'"/Game/Demo/MyActor.MyActor:EventGraph.K2Node_AsyncAction_0"'
+   ProxyFactoryFunctionName="LoadDocument"
+   ProxyFactoryClass=/Script/CoreUObject.Class'"/Script/PDFViewer.LoadPDFDocumentProxy"'
+   ProxyClass=/Script/CoreUObject.Class'"/Script/PDFViewer.LoadPDFDocumentProxy"'
+   NodePosX=-314
+   NodePosY=-7
+   NodeGuid=EA31E73E43D9CA8F22EEA88A48B22C5B
+   CustomProperties Pin (PinId=D31D8AD841390F975CA648A9678BEACA,PinName="execute",PinToolTip="\nExec",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_Event_3 070EA8BF447C038A4B3529827BFDDC79,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=5B045C1A404F3AFC75AAB1BC9B4222E4,PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=CE7DE4E2466D4388D020C283760379F6,PinName="Loaded",PinFriendlyName="Loaded",PinToolTip="The document was loaded and is available.",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_Knot_1 28E170294E57677B84C21097D51BAB59,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=89D57BBA4442296DB1515A9C1007602A,PinName="Error",PinFriendlyName="Error",PinToolTip="An error appeared while loading the PDF document.",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_1 4C446DB74E70A4ADC9D106970E4A0F43,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=BCFCDF9748C85BA283868D95BDB13D9D,PinName="PDFDocument",PinToolTip="PDFDocument\nPDFDocument Object Reference",Direction="EGPD_Output",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/PDFViewer.PDFDocument"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_2 3D50C9124152092BC00FD09356D166E5,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=C41B3E694C3DF7756B4B8FB2A8022092,PinName="ErrorCode",PinToolTip="Error Code\nInteger",Direction="EGPD_Output",PinType.PinCategory="int",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=AF1F6C134D86D0C95819B09FD5003626,PinName="ErrorMessage",PinToolTip="Error Message\nString",Direction="EGPD_Output",PinType.PinCategory="string",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_1 AD24EACF4080D80393DF50BCAB685372,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=A869943A470EEB30740AA8BB3EF425C0,PinName="Path",PinToolTip="Path\nString\n\nThe path of the PDF document. Must be accessible through the stadard filesystem.",PinType.PinCategory="string",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CommutativeAssociativeBinaryOperator_0 031F30D54CA6C1716E1D11B0A9FF2C7A,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=0816D7B44C34DA981A32EB92526E8BF9,PinName="Password",PinToolTip="Password\nString\n\nThe optional password of the PDF document.",PinType.PinCategory="string",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name="K2Node_CallFunction_0" ExportPath=/Script/BlueprintGraph.K2Node_CallFunction'"/Game/Demo/MyActor.MyActor:EventGraph.K2Node_CallFunction_0"'
+   bIsPureFunc=True
+   FunctionReference=(MemberParent=/Script/CoreUObject.Class'"/Script/Engine.KismetSystemLibrary"',MemberName="GetProjectDirectory")
+   NodePosX=-806
+   NodePosY=135
+   NodeGuid=8CC2C11546CFDBB8B46A41AC76AEDBCC
+   CustomProperties Pin (PinId=45355DFF47BA0CA905ADAB83D17E32D9,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/Engine.KismetSystemLibrary"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultObject="/Script/Engine.Default__KismetSystemLibrary",PersistentGuid=00000000000000000000000000000000,bHidden=True,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=A25019214007171F17AD4FB9CA6BAFCA,PinName="ReturnValue",Direction="EGPD_Output",PinType.PinCategory="string",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CommutativeAssociativeBinaryOperator_0 19635C7E4CCC5ED43AE4E08B02ACEB23,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_CommutativeAssociativeBinaryOperator Name="K2Node_CommutativeAssociativeBinaryOperator_0" ExportPath=/Script/BlueprintGraph.K2Node_CommutativeAssociativeBinaryOperator'"/Game/Demo/MyActor.MyActor:EventGraph.K2Node_CommutativeAssociativeBinaryOperator_0"'
+   bIsPureFunc=True
+   FunctionReference=(MemberParent=/Script/CoreUObject.Class'"/Script/Engine.KismetStringLibrary"',MemberName="Concat_StrStr")
+   NodePosX=-592
+   NodePosY=80
+   NodeGuid=18CE9E1342250298847C7E87E869FB25
+   CustomProperties Pin (PinId=E5125B784C3BE3ECF3B8C09DF25D6665,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinToolTip="Target\nKismet String Library Object Reference",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/Engine.KismetStringLibrary"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultObject="/Script/Engine.Default__KismetStringLibrary",PersistentGuid=00000000000000000000000000000000,bHidden=True,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=19635C7E4CCC5ED43AE4E08B02ACEB23,PinName="A",PinToolTip="A\nString\n\nThe original string",PinType.PinCategory="string",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_0 A25019214007171F17AD4FB9CA6BAFCA,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=EAF602C847DB3815B8F789AE55983A64,PinName="B",PinToolTip="B\nString\n\nThe string to append to A",PinType.PinCategory="string",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="myfile.pdf",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=031F30D54CA6C1716E1D11B0A9FF2C7A,PinName="ReturnValue",PinToolTip="Return Value\nString\n\nA new string which is the concatenation of A+B",Direction="EGPD_Output",PinType.PinCategory="string",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_AsyncAction_0 A869943A470EEB30740AA8BB3EF425C0,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name="K2Node_CallFunction_1" ExportPath=/Script/BlueprintGraph.K2Node_CallFunction'"/Game/Demo/MyActor.MyActor:EventGraph.K2Node_CallFunction_1"'
+   FunctionReference=(MemberParent=/Script/CoreUObject.Class'"/Script/Engine.KismetSystemLibrary"',MemberName="PrintString")
+   NodePosX=-26
+   NodePosY=185
+   AdvancedPinDisplay=Hidden
+   EnabledState=DevelopmentOnly
+   NodeGuid=7CD998164FEEA960BD70D2A5061CA038
+   CustomProperties Pin (PinId=4C446DB74E70A4ADC9D106970E4A0F43,PinName="execute",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_AsyncAction_0 89D57BBA4442296DB1515A9C1007602A,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=4D3EC0624B0AAA1F19E2BD987B6F3E6B,PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=6F9A0DB84A9468DF80DD8F8F314D0D17,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/Engine.KismetSystemLibrary"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultObject="/Script/Engine.Default__KismetSystemLibrary",PersistentGuid=00000000000000000000000000000000,bHidden=True,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=ED953403485F4243F4CFB0816FDB0358,PinName="WorldContextObject",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/CoreUObject.Object"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=True,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=True,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=AD24EACF4080D80393DF50BCAB685372,PinName="InString",PinType.PinCategory="string",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="Hello",AutogeneratedDefaultValue="Hello",LinkedTo=(K2Node_AsyncAction_0 AF1F6C134D86D0C95819B09FD5003626,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=57EDE236485BD5AC702166A39BCE8BB6,PinName="bPrintToScreen",PinType.PinCategory="bool",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="true",AutogeneratedDefaultValue="true",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=True,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=25E566C24B9423D19AF63AB36AC3FF27,PinName="bPrintToLog",PinType.PinCategory="bool",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="true",AutogeneratedDefaultValue="true",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=True,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=392C8E594651508BFF9C7A88B5EAAA93,PinName="TextColor",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/CoreUObject.LinearColor"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="(R=0.000000,G=0.660000,B=1.000000,A=1.000000)",AutogeneratedDefaultValue="(R=0.000000,G=0.660000,B=1.000000,A=1.000000)",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=True,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=D94AAB624E4E44F8ED85C78B0FC52E57,PinName="Duration",PinType.PinCategory="real",PinType.PinSubCategory="float",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="2.000000",AutogeneratedDefaultValue="2.000000",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=True,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=DE702550414941F7ECC40FB4CE6637BA,PinName="Key",PinType.PinCategory="name",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=True,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="None",AutogeneratedDefaultValue="None",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=True,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name="K2Node_CallFunction_2" ExportPath=/Script/BlueprintGraph.K2Node_CallFunction'"/Game/Demo/MyActor.MyActor:EventGraph.K2Node_CallFunction_2"'
+   bIsPureFunc=True
+   FunctionReference=(MemberParent=/Script/CoreUObject.Class'"/Script/PDFViewer.PDFDocument"',MemberName="GetPage")
+   NodePosX=-26
+   NodePosY=57
+   NodeGuid=E08B866241D330F10DD433914406144A
+   CustomProperties Pin (PinId=3D50C9124152092BC00FD09356D166E5,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/PDFViewer.PDFDocument"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_AsyncAction_0 BCFCDF9748C85BA283868D95BDB13D9D,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=B2D4BBE0453AD482C0145A89C84FB6F0,PinName="Index",PinType.PinCategory="int",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=True,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="0",AutogeneratedDefaultValue="0",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=D2BB9F34431F5B39C8199E8536B8AF16,PinName="ReturnValue",PinFriendlyName="Page",Direction="EGPD_Output",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/PDFViewer.PDFPage"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_AsyncAction_1 DD827823493162E28CB5F8BA6E231766,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_AsyncAction Name="K2Node_AsyncAction_1" ExportPath=/Script/BlueprintGraph.K2Node_AsyncAction'"/Game/Demo/MyActor.MyActor:EventGraph.K2Node_AsyncAction_1"'
+   ProxyFactoryFunctionName="RenderPage"
+   ProxyFactoryClass=/Script/CoreUObject.Class'"/Script/PDFViewer.RenderPDFPageProxy"'
+   ProxyClass=/Script/CoreUObject.Class'"/Script/PDFViewer.RenderPDFPageProxy"'
+   NodePosX=192
+   NodePosY=-16
+   NodeGuid=E38BE1C440AD170D1FA52EB3E5D725CB
+   CustomProperties Pin (PinId=0671D6174062C25E549A10A6333FF3C5,PinName="execute",PinToolTip="\nExec",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_Knot_1 F77608374C92B16DEFA87F997D62E36A,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=4722C1AC4B8621A99523439C535B8F6E,PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=763602B84B397BEEF14A1FA052A16DF4,PinName="Rendered",PinFriendlyName="Rendered",PinToolTip="The page was rendered.",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_3 211865174B50CEEC218A008746952921,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=069A572B481A25701E62A99014E0A187,PinName="Error",PinFriendlyName="Error",PinToolTip="An error occurred.",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=8B8834AD4828F6431E541FB25B9FD1F3,PinName="Texture",PinToolTip="Texture\nTexture 2D Object Reference",Direction="EGPD_Output",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/Engine.Texture2D"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=DD827823493162E28CB5F8BA6E231766,PinName="Page",PinToolTip="Page\nPDFPage Object Reference",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/PDFViewer.PDFPage"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_2 D2BB9F34431F5B39C8199E8536B8AF16,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=8AD27E6842D2B4BCCA379F93D255E3BB,PinName="Start",PinToolTip="Start\nPDFVector 2D Structure\n\nThe start position to render the page.",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/PDFViewer.PDFVector2D"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=8038A45449BEA5FF6428FD9F8B145530,PinName="Size",PinToolTip="Size\nPDFVector 2D Structure\n\nThe size of the rendered page in pixel.",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/PDFViewer.PDFVector2D"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_MakeStruct_0 500002D24E36EC60EA41DE83B0824245,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=EC8BF1C7400F08D540564C8C5FBE4FAA,PinName="BackgroundColor",PinToolTip="Background Color\nLinear Color Structure",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/CoreUObject.LinearColor"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="(R=1.000000,G=1.000000,B=1.000000,A=1.000000)",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=A0E6DB5F440A7B9B1A2C37AAD0DE4800,PinName="Orientation",PinToolTip="Orientation\nEPDFPageOrientation Enum\n\nThe orientation of the page.",PinType.PinCategory="byte",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Enum'"/Script/PDFViewer.EPDFPageOrientation"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="Normal",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=2035FE494BD52D84B3ECB1AB4801F110,PinName="Flags",PinToolTip="Flags\nSet of EPDFFlags Enums\n\nOptional flags for the rendering.",PinType.PinCategory="byte",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Enum'"/Script/PDFViewer.EPDFFlags"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=Set,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="Normal",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_Knot Name="K2Node_Knot_1" ExportPath=/Script/BlueprintGraph.K2Node_Knot'"/Game/Demo/MyActor.MyActor:EventGraph.K2Node_Knot_1"'
+   NodePosX=-42
+   NodePosY=17
+   NodeGuid=F8CAF38E48D60215FB0C2C90DE8B4AED
+   CustomProperties Pin (PinId=28E170294E57677B84C21097D51BAB59,PinName="InputPin",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_AsyncAction_0 CE7DE4E2466D4388D020C283760379F6,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=True,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=F77608374C92B16DEFA87F997D62E36A,PinName="OutputPin",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_AsyncAction_1 0671D6174062C25E549A10A6333FF3C5,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_MakeStruct Name="K2Node_MakeStruct_0" ExportPath=/Script/BlueprintGraph.K2Node_MakeStruct'"/Game/Demo/MyActor.MyActor:EventGraph.K2Node_MakeStruct_0"'
+   bMadeAfterOverridePinRemoval=True
+   ShowPinForProperties(0)=(PropertyName="X",PropertyFriendlyName="X",CategoryName="Vector2D",bShowPin=True,bCanToggleVisibility=True)
+   ShowPinForProperties(1)=(PropertyName="Y",PropertyFriendlyName="Y",CategoryName="Vector2D",bShowPin=True,bCanToggleVisibility=True)
+   StructType=/Script/CoreUObject.ScriptStruct'"/Script/PDFViewer.PDFVector2D"'
+   NodePosX=-42
+   NodePosY=-103
+   NodeGuid=F8D2DEA248DA4CE5FD65FD8561AA5F91
+   CustomProperties Pin (PinId=500002D24E36EC60EA41DE83B0824245,PinName="PDFVector2D",Direction="EGPD_Output",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/PDFViewer.PDFVector2D"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_AsyncAction_1 8038A45449BEA5FF6428FD9F8B145530,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=C6F6122C46FF88B8CC6156B56661438F,PinName="X",PinFriendlyName="X",PinToolTip="X\nInteger",PinType.PinCategory="int",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="1080",AutogeneratedDefaultValue="0",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=A6C5860B4EAB49ED35BBF1AC49362367,PinName="Y",PinFriendlyName="Y",PinToolTip="Y\nInteger",PinType.PinCategory="int",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="1920",AutogeneratedDefaultValue="0",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+</textarea>
+<img src="_images/RenderPage3D.png" style="cursor: pointer" onclick="showFullScreen('_images/CreateTexture3d.png')">
+<button onclick="copyBlueprintCode(this)">Copy Code</button>
+</div>
+<p>Now that we have a texture, we can pass it to the material so it gets rendered on our plane. Add the following code to make the material on the plane use the texture.</p><p class="tip"><strong>Important</strong>: Connect the execution pin to <code>Rendered</code>.</p><p class="tip">Check that <strong>Source Material</strong> references the material created previously.</p><div class="bpcode">
+<textarea readonly="">Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name="K2Node_CallFunction_3" ExportPath=/Script/BlueprintGraph.K2Node_CallFunction'"/Game/DemoActor.DemoActor:EventGraph.K2Node_CallFunction_3"'
+   FunctionReference=(MemberParent=/Script/CoreUObject.Class'"/Script/Engine.PrimitiveComponent"',MemberName="CreateDynamicMaterialInstance")
+   NodePosX=752
+   NodePosY=-512
+   NodeGuid=F4579F914AD4609330ED3E8B58B55155
+   CustomProperties Pin (PinId=211865174B50CEEC218A008746952921,PinName="execute",PinToolTip="\nExec",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_AsyncAction_2 156139C24B9FDA46C7E47C9F9A515D47,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=25FD0DCF45E93E37AB712CACE7FD3B1A,PinName="then",PinToolTip="\nExec",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_4 1BD0C7A5422D57A57643A1BD7CF690AB,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=D194346341C3DF3BBCB99E8F051553ED,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinToolTip="Target\nPrimitive Component Object Reference",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/Engine.PrimitiveComponent"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_VariableGet_0 E581E70040E44F9630D542A01D94C379,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=92B071E44DD0309A93DFDCA5D187F3D7,PinName="ElementIndex",PinToolTip="Element Index\nInteger\n\nThe index of the skin to replace the material for.  If invalid, the material is unchanged and NULL is returned.",PinType.PinCategory="int",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="0",AutogeneratedDefaultValue="0",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=FD109F574E40C162AFB65D9D74F65422,PinName="SourceMaterial",PinToolTip="Source Material\nMaterial Interface Object Reference",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/Engine.MaterialInterface"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,AutogeneratedDefaultValue="None",DefaultObject="/Game/MAT_PDF.MAT_PDF",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=6AAC7F3D40C79D224CEBB7823398D3B0,PinName="OptionalName",PinToolTip="Optional Name\nName",PinType.PinCategory="name",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="None",AutogeneratedDefaultValue="None",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=2C1336A24EC315BA792EBE9A93744885,PinName="ReturnValue",PinToolTip="Return Value\nMaterial Instance Dynamic Object Reference",Direction="EGPD_Output",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/Engine.MaterialInstanceDynamic"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_4 9B9F131C428539DFEC41CA8B64AE065B,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_VariableGet Name="K2Node_VariableGet_0" ExportPath=/Script/BlueprintGraph.K2Node_VariableGet'"/Game/DemoActor.DemoActor:EventGraph.K2Node_VariableGet_0"'
+   VariableReference=(MemberName="Plane",bSelfContext=True)
+   NodePosX=560
+   NodePosY=-384
+   NodeGuid=837287F4416C2176BD5D9A95ADED555B
+   CustomProperties Pin (PinId=E581E70040E44F9630D542A01D94C379,PinName="Plane",Direction="EGPD_Output",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/Engine.StaticMeshComponent"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_3 D194346341C3DF3BBCB99E8F051553ED,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=557BDB924DAD0C22F01C65B4D4BEE4DD,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/Engine.BlueprintGeneratedClass'"/Game/DemoActor.DemoActor_C"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=True,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name="K2Node_CallFunction_4" ExportPath=/Script/BlueprintGraph.K2Node_CallFunction'"/Game/DemoActor.DemoActor:EventGraph.K2Node_CallFunction_4"'
+   FunctionReference=(MemberParent=/Script/CoreUObject.Class'"/Script/Engine.MaterialInstanceDynamic"',MemberName="SetTextureParameterValue")
+   NodePosX=1088
+   NodePosY=-512
+   NodeGuid=D4AC70544E128C196B69D294A5978271
+   CustomProperties Pin (PinId=1BD0C7A5422D57A57643A1BD7CF690AB,PinName="execute",PinToolTip="\nExec",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_3 25FD0DCF45E93E37AB712CACE7FD3B1A,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=4D61D3264DD50B405B6F60B8F4D42976,PinName="then",PinToolTip="\nExec",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=9B9F131C428539DFEC41CA8B64AE065B,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinToolTip="Target\nMaterial Instance Dynamic Object Reference",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/Engine.MaterialInstanceDynamic"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_3 2C1336A24EC315BA792EBE9A93744885,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=C9F3C0814B2111A6F9DC53B045B83F9D,PinName="ParameterName",PinToolTip="Parameter Name\nName",PinType.PinCategory="name",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="PDF_Texture",AutogeneratedDefaultValue="None",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=881BC3EC40FCD1430FF98E87534A9C52,PinName="Value",PinToolTip="Value\nTexture Object Reference",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/Engine.Texture"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_Knot_1 5D1A63C040AAD99B7B85AEA9C03AD0D5,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_Knot Name="K2Node_Knot_0" ExportPath=/Script/BlueprintGraph.K2Node_Knot'"/Game/DemoActor.DemoActor:EventGraph.K2Node_Knot_0"'
+   NodePosX=544
+   NodePosY=-256
+   NodeGuid=B7683E9B4D88E8E59BEBEF925707FE7A
+   CustomProperties Pin (PinId=6B1355A440A9F60DA5CA86AD62A54693,PinName="InputPin",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/Engine.Texture2D"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_AsyncAction_2 C53C48DC4737E2B63DFCF39405FBC3F9,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=True,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=8795C1E6417CEB4C1F1206A5A43ADA4E,PinName="OutputPin",Direction="EGPD_Output",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/Engine.Texture2D"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_Knot_1 8B0A74C6414365086A88619A8A7AAD25,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_Knot Name="K2Node_Knot_1" ExportPath=/Script/BlueprintGraph.K2Node_Knot'"/Game/DemoActor.DemoActor:EventGraph.K2Node_Knot_1"'
+   NodePosX=1024
+   NodePosY=-256
+   NodeGuid=6ED1422642EA03C4443118A84F2BD53C
+   CustomProperties Pin (PinId=8B0A74C6414365086A88619A8A7AAD25,PinName="InputPin",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/Engine.Texture2D"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_Knot_0 8795C1E6417CEB4C1F1206A5A43ADA4E,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=True,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=5D1A63C040AAD99B7B85AEA9C03AD0D5,PinName="OutputPin",Direction="EGPD_Output",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/Engine.Texture2D"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_4 881BC3EC40FCD1430FF98E87534A9C52,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+</textarea>
+<img src="_images/SetMaterialTexture.png" style="cursor: pointer" onclick="showFullScreen('_images/CreateTexture3d.png')">
+<button onclick="copyBlueprintCode(this)">Copy Code</button>
+</div>
+<p class="warn">The material instance can be reused: when you want to switch the page, only call <code>Set Texture Parameter Value</code> with the new texture to avoid creating a new material instance.</p><h2 id="_4-place-the-actor"><a href="world.html#_4-place-the-actor" data-id="_4-place-the-actor" class="anchor"><span><strong>4.</strong> Place the Actor</span></a></h2><p>Drag your actor into the scene and rotate/scale it so it makes the dimension of your PDF page.</p><p>Launch the game (<code>ALT + P</code>) and move to your newly placed actor. You should see the following with your PDF:</p><div class="centered">
+<p><img src="././_images/Result3D.png" data-origin="./_images/Result3D.png" alt=""></p></div>
+<script>
+setTimeout(() => {
+    bShowCPP = !JSON.parse(getCookie('bShowCPP'));
+    switchCode();
+}, 0);
+</script>
+<div class="docsify-pagination-container">
+        <div class="pagination-item pagination-item--previous">
+          <a href="umg">
+            <div class="pagination-item-label">
+              <svg width="10" height="16" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
+                <polyline fill="none" vector-effect="non-scaling-stroke" points="8,2 2,8 8,14"></polyline>
+              </svg>
+              <span>PREVIOUS</span>
+            </div>
+            <div class="pagination-item-title">Show a PDF in UMG</div>
+      <div class="pagination-item-subtitle">Quick Start</div></a>
+        </div>
+      
+        <div class="pagination-item pagination-item--next">
+          <a href="pdfviewer">
+            <div class="pagination-item-label">
+              <span>NEXT</span>
+              <svg width="10" height="16" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
+                <polyline fill="none" vector-effect="non-scaling-stroke" points="2,2 8,8 2,14"></polyline>
+              </svg>
+            </div>
+            <div class="pagination-item-title">Create a PDF Viewer</div>
+      <div class="pagination-item-subtitle">Quick Start</div></a>
+        </div>
+      </div></article></section></main>
+	<div id="work-notice" class="work-container">
+		<h1>The documentation is being reworked.</h1>
+		<div>
+			Page content is subject to change. You might need to force refresh the page to see changes.
+		</div>
+		<button onclick="document.getElementById('work-notice').style.display = 'none'">
+			✖
+		</button>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+<div class="progress" style="opacity: 0; width: 0%;"></div></body></html>
