@@ -1,0 +1,34 @@
+{
+  "root_url": "http://localhost:3000",
+  "out_dir": "docs/",
+  "src_dir": "src/",
+  "load_timeout": 20000,
+  "remove_selectors": [
+    ".delete-static",
+    "script[src*=\"livereload.js\"]",
+    "iframe[allow=\"join-ad-interest-group\"]"
+  ],
+  "string_replaces": [
+    ["href=\"/\"", "href=\".\""],
+    ["?id=", ".html#"],
+    ["js.html#", "js.html?id="],
+    ["img src=\"/", "img src=\"./"]
+  ],
+  "title_append": " | PDF Viewer",
+  "pages": {
+    "index": {
+      "title": "How to load PDFs in Unreal Engine",
+      "description": "Documentation for the most popular PDF Viewer plugin for Unreal Engine. Load and show PDFs in Unreal Engine in 2D or 3D.",
+      "keywords": "Firebase, PDF, integration, load pdf, Unreal Engine, game dev, Game Development, Mobile Game Development, Game Development Tools, Mobile Game Development Tools",
+      "priority": 1,
+      "in_sitemap": true
+    },
+    "world": {
+      "title": "How to show PDFs in 3D in Unreal Engine",
+      "description": "Learn how to load and show PDF documents inside an Unreal Engine project. Follow the step-by-step instructions and code examples to help you visualize and interact with 2D PDFs within immersive 3D environments.",
+      "keywords": "Firebase, PDF, integration, load pdf, Unreal Engine, game dev, Game Development, Mobile Game Development, Game Development Tools, Mobile Game Development Tools",
+      "priority": 1,
+      "in_sitemap": true
+    }
+  }
+}
