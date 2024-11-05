@@ -29,6 +29,12 @@
       "keywords": "Firebase, PDF, integration, load pdf, Unreal Engine, game dev, Game Development, Mobile Game Development, Game Development Tools, Mobile Game Development Tools",
       "priority": 1,
       "in_sitemap": true
+    },
+    "page": {
+      "title": "PDF Page - PDF Viewer API Reference"
+    },
+    "document": {
+      "title": "PDF Document - PDF Viewer API Reference"
     }
   }
 }
