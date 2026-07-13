@@ -2,14 +2,18 @@
 
 Visit [the documentation](https://pandoa.github.io/PDFViewer/) for PDFViewer.
 
-You can also [download the plugin](https://www.fab.com/listings/4b675d25-f2f9-4537-b2f3-5406b846f6ac).
+
+
+
+
+
+
+
 
 
 
 <!--backlinks-->
 
-<div style="opacity: 0.5">
-  
 #### Navigate the documentation
 
  - [https://pandoa.github.io/PDFViewer/](https://pandoa.github.io/PDFViewer/),
@@ -37,5 +41,3 @@ You can also [download the plugin](https://www.fab.com/listings/4b675d25-f2f9-45
  - [https://pandoa.github.io/PDFViewer/umg-pdf-viewer-unreal-engine](https://pandoa.github.io/PDFViewer/umg-pdf-viewer-unreal-engine),
  - [https://pandoa.github.io/PDFViewer/virtual-production-pdf-unreal-engine](https://pandoa.github.io/PDFViewer/virtual-production-pdf-unreal-engine),
  - [https://pandoa.github.io/PDFViewer/world](https://pandoa.github.io/PDFViewer/world)
-
-</div>
