@@ -10,7 +10,7 @@
 	<meta property="og:type" content="website">
 	<meta property="og:image" content="https://pandoa.github.io/PDFViewer/_images/features.jpg">
 	<meta property="og:url" content="https://pandoa.github.io/PDFViewer/">
-	<script type="application/ld+json">{"@context":"https://schema.org/","@type":"TechArticle","headline":"How to load PDFs in Unreal Engine","name":"PDF Viewer for Unreal Engine","description":"Documentation for the most popular PDF Viewer plugin for Unreal Engine. Load and show PDFs in Unreal Engine in 2D or 3D.","author":{"@type":"Person","name":"Pandores","url":"https://www.fab.com/sellers/Pandores"},"publisher":{"@type":"Organization","name":"Pandores Marketplace","logo":{"@type":"ImageObject","url":"https://pandoa.github.io/PDFViewer/_media/icon.png"}},"proficiencyLevel":"Beginner","datePublished":"2024-11-02T00:00:00.969Z","mainEntityOfPage":"https://pandoa.github.io/PDFViewer/","dateModified":"2026-05-24T10:23:41.791Z","keywords":["Firebase"," PDF"," integration"," load pdf"," Unreal Engine"," game dev"," Game Development"," Mobile Game Development"," Game Development Tools"," Mobile Game Development Tools"]}</script>
+	<script type="application/ld+json">{"@context":"https://schema.org/","@type":"TechArticle","headline":"How to load PDFs in Unreal Engine","name":"PDF Viewer for Unreal Engine","description":"Documentation for the most popular PDF Viewer plugin for Unreal Engine. Load and show PDFs in Unreal Engine in 2D or 3D.","author":{"@type":"Person","name":"Pandores","url":"https://www.fab.com/sellers/Pandores"},"publisher":{"@type":"Organization","name":"Pandores Marketplace","logo":{"@type":"ImageObject","url":"https://pandoa.github.io/PDFViewer/_media/icon.png"}},"proficiencyLevel":"Beginner","datePublished":"2024-11-02T00:00:00.969Z","mainEntityOfPage":"https://pandoa.github.io/PDFViewer/","dateModified":"2026-07-20T20:16:53.370Z","keywords":["Firebase"," PDF"," integration"," load pdf"," Unreal Engine"," game dev"," Game Development"," Mobile Game Development"," Game Development Tools"," Mobile Game Development Tools"]}</script>
 	<style>
 		:root {
 			--theme-color: #70a2ff;
@@ -251,7 +251,7 @@
 			left: 0;
 			transition: transform .25s ease-out;
 			width: 300px;
-			z-index: 20
+			z-index: 20;
 		}
 		.sidebar>h1 {
 			margin: 0 auto 1rem;
@@ -629,9 +629,8 @@
 			color: #ea6f5a;
 			color: var(--theme-color, #ea6f5a)
 		}
-		.sidebar,
 		body {
-			background-color: #3f3f3f
+			background-color: #000
 		}
 		.sidebar {
 			color: #c8c8c8
@@ -891,7 +890,7 @@
 			font-weight: 400
 		}
 		.sidebar {
-			background-color: #202020
+			background-color: #080808
 		}
 		textarea {
 			display: none
@@ -984,7 +983,7 @@
 		}
 		.sidebar-toggle {
 			width: 300px;
-			background: #555;
+			background: #070707;
 			transition: width 0.2s linear
 		}
 		.sidebar-nav>ul>li>ul>li {
@@ -1427,318 +1426,602 @@
 	bShowCPP = JSON.parse(getCookie('bShowCPP'));
 </script>
 <main><button class="sidebar-toggle" aria-label="Menu"><div class="sidebar-toggle-button"><span></span><span></span><span></span></div></button><aside class="sidebar"><h1 class="app-name"><a class="app-name-link" data-nosearch="" href=".">PDF Viewer</a></h1><div class="sidebar-nav"><ul><li><p>Quick Start</p><ul><li><a href="umg" title="Show a PDF in UMG">Show a PDF in UMG</a></li><li><a href="world" title="Show a PDF in the World">Show a PDF in the World</a></li><li><a href="pdfviewer" title="Create a PDF Viewer">Create a PDF Viewer</a></li><li><a href="pdfviewerworld" title="Create a PDF Viewer in the World">Create a PDF Viewer in the World</a></li><li><a href="downloadpdf" title="Download &amp; Show a PDF">Download &amp; Show a PDF</a></li></ul></li><li><p>API</p><ul><li><a href="document" title="Document">Document</a></li><li><a href="page" title="Page">Page</a></li></ul></li><li><p>Support</p><ul><li><a href="troubleshoting" title="Troubleshooting">Troubleshooting</a></li><li><a href="support" title="Contact">Contact</a></li></ul></li></ul></div></aside><section class="content"><article class="markdown-section" id="main"><div class="pv-hero">
-<div class="pv-hero-content">
-<div class="pv-tag">Android Ready</div>
-<h1>PDF Viewer for Android</h1>
-<p class="pv-subtitle">High-performance runtime PDF rendering on Android devices. Supports 2D UMG and 3D plane display with full Blueprint + C++ access and Blueprint-only examples.</p>
-<div class="pv-actions">
-<a href="https://www.fab.com/listings/4b675d25-f2f9-4537-b2f3-5406b846f6ac" class="pv-button">
-<span style="text-transform: uppercase;font-weight:bold">Get the Plugin</span>
-<img class="pv-button-icon" src="https://pandoa.github.io/FirebaseFeatures/_images/buyueicon.png" alt="{{cta_icon_alt}}">
-</a>
-</div>
-</div>
-<div class="pv-preview-wrap">
-<img src="_images/Result3D.png" alt="Android PDF Unreal Engine" class="pv-preview">
-</div>
-</div>
-<div class="pv-section">
-<div class="pv-section-header">
-<span>ANDROID SETUP</span>
-<h2>Mobile Integration Guide</h2>
-</div>
-<div class="pv-grid">
-<a href="umg" class="pv-card">
-<div class="pv-card-top">
-<div class="pv-card-icon">UI</div>
-<div class="pv-arrow">→</div>
-</div>
-<h3>2D Rendering in UMG</h3>
-<p>Responsive PDF viewing in mobile UI and touch-friendly interfaces.</p>
-</a>
-<a href="world" class="pv-card">
-<div class="pv-card-top">
-<div class="pv-card-icon">3D</div>
-<div class="pv-arrow">→</div>
-</div>
-<h3>3D Rendering on Plane</h3>
-<p>Display PDFs on 3D objects optimized for mobile performance.</p>
-</a>
-</div>
+  <div class="pv-hero-content">
+    <div class="pv-tag"><span class="pv-tag-dot"></span>Android Ready</div>
+    <h1>PDF Viewer for Android</h1>
+    <p class="pv-subtitle">High-performance runtime PDF rendering on Android devices. Supports 2D UMG and 3D plane display with full Blueprint + C++ access and Blueprint-only examples.</p>
+    <div class="pv-actions">
+      <a href="https://www.fab.com/listings/4b675d25-f2f9-4537-b2f3-5406b846f6ac" class="pv-button">
+        <span style="text-transform: uppercase; font-weight: 800; letter-spacing: 0.05em;">Get the Plugin</span>
+        <img class="pv-button-icon" src="https://pandoa.github.io/FirebaseFeatures/_images/buyueicon.png" alt="{{cta_icon_alt}}">
+      </a>
+      <a href="umg" class="pv-button-secondary">Explore Quickstart</a>
+    </div>
+  </div>
+  <div class="pv-preview-wrap">
+    <div class="pv-preview-glow"></div>
+    <img src="_images/Result3D.png" alt="Android PDF Unreal Engine" class="pv-preview">
+  </div>
 </div>
 <div class="pv-section">
-<div class="pv-section-header">
-<span>API & DOCUMENTATION</span>
-<h2>C++ API Reference</h2>
+  <div class="pv-section-header">
+    <span>ANDROID SETUP</span>
+    <h2>Mobile Integration Guide</h2>
+  </div>
+  <div class="pv-grid">
+    <!-- UMG Card -->
+    <div class="pv-card-step">
+      <div class="pv-card-top">
+        <div class="pv-card-icon">UI</div>
+        <span class="pv-badge">UMG Widget</span>
+      </div>
+      <div class="pv-card-body">
+        <h3>Render PDF in UMG</h3>
+        <p>Display document pages dynamically inside Blueprint UI layouts.</p>
+        <div class="pv-step-preview">
+          <div class="pv-step-item">
+            <span class="pv-step-num">1</span>
+            <div class="pv-step-content">
+              <strong>Create Widget Blueprint</strong>
+              <span>Add a <code>UImage</code> component and mark it as <code>Is Variable</code>.</span>
+            </div>
+          </div>
+          <div class="pv-step-item">
+            <span class="pv-step-num">2</span>
+            <div class="pv-step-content">
+              <strong>Render PDF Page</strong>
+              <span>Load document, render first page to a texture (1080x1920 target res).</span>
+            </div>
+          </div>
+          <div class="pv-step-item pv-step-more">
+            <span class="pv-step-num">3</span>
+            <div class="pv-step-content">
+              <strong>Assign &amp; Display</strong>
+              <span>Pass texture to image brush &amp; configure resolution...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="umg" class="pv-card-footer-link">
+        <span>Read Full UMG Guide</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </a>
+    </div>
+    <!-- 3D World Card -->
+    <div class="pv-card-step">
+      <div class="pv-card-top">
+        <div class="pv-card-icon">3D</div>
+        <span class="pv-badge">World Actor</span>
+      </div>
+      <div class="pv-card-body">
+        <h3>Render PDF in World</h3>
+        <p>Project documents onto 3D surfaces and meshes in the viewport.</p>
+        <div class="pv-step-preview">
+          <div class="pv-step-item">
+            <span class="pv-step-num">1</span>
+            <div class="pv-step-content">
+              <strong>Create Actor Blueprint</strong>
+              <span>Add a <code>Plane</code> or custom mesh component to host the render.</span>
+            </div>
+          </div>
+          <div class="pv-step-item">
+            <span class="pv-step-num">2</span>
+            <div class="pv-step-content">
+              <strong>Create Material</strong>
+              <span>Set Shading Model to <code>Unlit</code> for clear document readability.</span>
+            </div>
+          </div>
+          <div class="pv-step-item pv-step-more">
+            <span class="pv-step-num">3</span>
+            <div class="pv-step-content">
+              <strong>Apply Texture Param</strong>
+              <span>Bind dynamic material instance to runtime PDF stream...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="world" class="pv-card-footer-link">
+        <span>Read Full World Guide</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </a>
+    </div>
+  </div>
 </div>
-<div class="pv-grid">
-<a href="document" class="pv-card">
-<div class="pv-card-top">
-<div class="pv-card-icon">DOC</div>
-<div class="pv-arrow">→</div>
-</div>
-<h3>UPDFDocument</h3>
-<p>C++ class for cross-platform document loading including Android.</p>
-</a>
-<a href="page" class="pv-card">
-<div class="pv-card-top">
-<div class="pv-card-icon">PG</div>
-<div class="pv-arrow">→</div>
-</div>
-<h3>UPDFPage</h3>
-<p>C++ class for page rendering and mobile-optimized operations.</p>
-</a>
-</div>
+<div class="pv-section">
+  <div class="pv-section-header">
+    <span>API & DOCUMENTATION</span>
+    <h2>C++ API Reference</h2>
+  </div>
+  <div class="pv-grid">
+    <a href="document" class="pv-card">
+      <div class="pv-card-top">
+        <div class="pv-card-icon">DOC</div>
+        <div class="pv-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+      </div>
+      <div class="pv-card-body">
+        <h3>UPDFDocument</h3>
+        <p>C++ class for cross-platform document loading including Android.</p>
+      </div>
+    </a>
+    <a href="page" class="pv-card">
+      <div class="pv-card-top">
+        <div class="pv-card-icon">PG</div>
+        <div class="pv-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+      </div>
+      <div class="pv-card-body">
+        <h3>UPDFPage</h3>
+        <p>C++ class for page rendering and mobile-optimized operations.</p>
+      </div>
+    </a>
+  </div>
 </div>
 <a href="troubleshoting" class="pv-support">
-<div>
-<span>MOBILE SUPPORT</span>
-<h3>Android Troubleshooting</h3>
-<p>Our support page covers Android-specific issues and Blueprint examples. Email me for quick help.</p>
-</div>
-<div class="pv-support-arrow">Visit Support Page →</div>
+  <div class="pv-support-content">
+    <span>MOBILE SUPPORT</span>
+    <h3>Android Troubleshooting</h3>
+    <p>Our support page covers Android-specific issues and Blueprint examples. Email me for quick help.</p>
+  </div>
+  <div class="pv-support-arrow">
+    <span>Visit Support Page →</span>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+  </div>
 </a>
 <style>
-.pv-hero{
-display:grid;
-grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);
-gap:64px;
-align-items:center;
-padding:24px 0 12px;
+:root {
+  --pv-accent: #fd8ce5;
+  --pv-accent-glow: rgba(253, 140, 229, 0.15);
+  --pv-accent-hover: #ffadfa;
+  --pv-bg-card: rgba(20, 20, 25, 0.6);
+  --pv-border: rgba(255, 255, 255, 0.06);
+  --pv-border-hover: rgba(253, 140, 229, 0.3);
+  --pv-text-muted: rgba(255, 255, 255, 0.55);
 }
-.pv-hero-content{
-min-width:0;
+.pv-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: 80px;
+  align-items: center;
+  padding: 60px 0 30px;
 }
-.pv-tag{
-display:inline-flex;
-align-items:center;
-height:34px;
-padding:0 14px;
-border-radius:999px;
-background:rgba(253,140,229,.08);
-border:1px solid rgba(253,140,229,.14);
-color:#fd8ce5;
-font-size:11px;
-font-weight:700;
-letter-spacing:.14em;
+.pv-hero-content {
+  min-width: 0;
 }
-.pv-hero h1{
-margin:22px 0 0;
-font-size:clamp(72px,9vw,128px);
-line-height:.88;
-letter-spacing:-.04em;
-font-weight:800;
-color:white;
+.pv-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 30px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: rgba(253, 140, 229, 0.08);
+  border: 1px solid rgba(253, 140, 229, 0.2);
+  color: var(--pv-accent);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
 }
-.pv-subtitle{
-margin:28px 0 0;
-max-width:680px;
-font-size:19px;
-line-height:1.8;
-color:rgba(255,255,255,.6);
+.pv-tag-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--pv-accent);
+  box-shadow: 0 0 10px var(--pv-accent);
 }
-.pv-actions{
-display:flex;
-margin-top:38px;
+.pv-hero h1 {
+  margin: 16px 0 0;
+  font-size: clamp(48px, 6vw, 84px);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-weight: 800;
+  color: #ffffff;
+  background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.85) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-.pv-button{
-display:inline-flex;
-align-items:center;
-justify-content:center;
-gap:14px;
-height:60px;
-padding:0 26px;
-border-radius:18px;
-background:#fd8ce5;
-color:#121212 !important;
-font-size:15px;
-font-weight:800;
-text-decoration:none !important;
-transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
-box-shadow:0 18px 50px rgba(253,140,229,.25);
+.pv-subtitle {
+  margin: 24px 0 0;
+  max-width: 620px;
+  font-size: 18px;
+  line-height: 1.75;
+  color: var(--pv-text-muted);
 }
-.pv-button:hover{
-transform:translateY(-2px);
-background:#ff9ceb;
-box-shadow:0 26px 70px rgba(253,140,229,.32);
+.pv-actions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-top: 40px;
 }
-.pv-button-icon{
-  border-radius:0;
-width:32px;
-height:32px;
-display:block;
-flex:none;
-background:transparent !important;
-border:none !important;
-box-shadow:none !important;
-filter:none !important;
-opacity:1;
+.pv-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  height: 56px;
+  padding: 0 32px;
+  border-radius: 14px;
+  background: var(--pv-accent);
+  color: #0d0d11 !important;
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 12px 40px rgba(253, 140, 229, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
-.pv-preview-wrap{
-position:relative;
-display:flex;
-justify-content:flex-end;
-align-items:center;
-min-height:420px;
+.pv-button:hover {
+  transform: translateY(-2px);
+  background: var(--pv-accent-hover);
+  box-shadow: 0 18px 50px rgba(253, 140, 229, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
-.pv-preview-wrap::before{
-content:"";
-position:absolute;
-inset:0;
-background:radial-gradient(circle at center, rgba(253,140,229,.14), transparent 60%);
-filter:blur(50px);
-z-index:0;
+.pv-button:active {
+  transform: translateY(0);
 }
-.pv-preview{
-position:relative;
-z-index:1;
-display:block;
-width:auto;
-height:auto;
-max-width:520px;
-max-height:420px;
-object-fit:contain;
-border-radius:26px;
-box-shadow:0 40px 100px rgba(0,0,0,.45);
+.pv-button-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  padding: 0 28px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--pv-border);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none !important;
+  transition: all 0.25s ease;
 }
-.pv-section{
-margin-top:68px;
+.pv-button-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
 }
-.pv-section-header{
-margin-bottom:22px;
+.pv-button-icon {
+  width: 24px;
+  height: 24px;
+  display: block;
+  flex: none;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  filter: brightness(0.1) !important;
 }
-.pv-section-header span{
-display:block;
-margin-bottom:10px;
-font-size:11px;
-font-weight:700;
-letter-spacing:.14em;
-color:rgba(255,255,255,.32);
+.pv-preview-wrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.pv-section-header h2{
-margin:0;
-font-size:44px;
-line-height:1;
-letter-spacing:-.06em;
-color:white;
+.pv-preview-glow {
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle at center, var(--pv-accent-glow) 0%, transparent 65%);
+  filter: blur(40px);
+  z-index: 0;
+  pointer-events: none;
 }
-.pv-grid{
-display:grid;
-grid-template-columns:repeat(2,minmax(0,1fr));
-gap:20px;
+.pv-preview {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 480px;
+  object-fit: contain;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
-.pv-card{
-display:flex;
-flex-direction:column;
-gap:22px;
-padding:32px;
-min-height:240px;
-border-radius:32px;
-text-decoration:none !important;
-background:rgba(255,255,255,.02);
-border:1px solid rgba(255,255,255,.05);
-transition:transform .18s ease,border-color .18s ease,background .18s ease;
+.pv-section {
+  margin-top: 80px;
 }
-.pv-card:hover{
-transform:translateY(-4px);
-border-color:rgba(253,140,229,.18);
-background:rgba(255,255,255,.03);
+.pv-section-header {
+  margin-bottom: 36px;
 }
-.pv-card-top{
-display:flex;
-align-items:center;
-justify-content:space-between;
+.pv-section-header span {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--pv-accent);
+  text-transform: uppercase;
 }
-.pv-card-icon{
-display:flex;
-align-items:center;
-justify-content:center;
-width:52px;
-height:52px;
-border-radius:18px;
-background:rgba(253,140,229,.08);
-border:1px solid rgba(253,140,229,.12);
-font-size:12px;
-font-weight:700;
-letter-spacing:.08em;
-color:#fd8ce5;
+.pv-section-header h2 {
+  margin: 0;
+  font-size: 32px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  color: #ffffff;
 }
-.pv-arrow{
-font-size:24px;
-color:rgba(255,255,255,.2);
-transition:all .18s ease;
+.pv-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
 }
-.pv-card:hover .pv-arrow{
-transform:translateX(4px);
-color:#fd8ce5;
+.pv-card-step {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px;
+  border-radius: 24px;
+  background: var(--pv-bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--pv-border);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.03);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.pv-card h3{
-margin:0;
-font-size:34px;
-line-height:1.05;
-letter-spacing:-.06em;
-color:white;
+.pv-card-step:hover {
+  border-color: var(--pv-border-hover);
+  background: rgba(253, 140, 229, 0.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 25px rgba(253, 140, 229, 0.05);
 }
-.pv-card p{
-margin:0;
-font-size:16px;
-line-height:1.8;
-color:rgba(255,255,255,.58);
+.pv-badge {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--pv-accent);
+  background: rgba(253, 140, 229, 0.1);
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(253, 140, 229, 0.2);
 }
-.pv-support{
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:24px;
-margin-top:68px;
-padding:32px;
-border-radius:32px;
-text-decoration:none !important;
-background:rgba(255,255,255,.02);
-border:1px solid rgba(255,255,255,.05);
-transition:transform .18s ease,border-color .18s ease;
+.pv-step-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+  padding: 24px;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
-.pv-support:hover{
-transform:translateY(-2px);
-border-color:rgba(253,140,229,.18);
+.pv-step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
 }
-.pv-support span{
-display:block;
-margin-bottom:10px;
-font-size:11px;
-font-weight:700;
-letter-spacing:.14em;
-color:rgba(255,255,255,.32);
+.pv-step-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.65);
 }
-.pv-support h3{
-margin:0;
-font-size:38px;
-line-height:1;
-letter-spacing:-.06em;
-color:white;
+.pv-step-content strong {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
 }
-.pv-support p{
-margin:14px 0 0;
-font-size:16px;
-line-height:1.8;
-color:rgba(255,255,255,.58);
+.pv-step-content code {
+  font-family: monospace;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1px 6px;
+  border-radius: 4px;
+  color: var(--pv-accent);
 }
-.pv-support-arrow{
-flex:none;
-font-size:18px;
-font-weight:700;
-color:#fd8ce5;
+.pv-step-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-top: 2px;
 }
-@media (max-width:1100px){
-.pv-hero{grid-template-columns:1fr;gap:42px;}
-.pv-preview{max-width:640px;margin:0 auto;}
+.pv-step-more {
+  opacity: 0.75;
 }
-@media (max-width:780px){
-.pv-grid{grid-template-columns:1fr;}
-.pv-hero h1{font-size:72px;}
-.pv-section-header h2{font-size:38px;}
-.pv-card{min-height:auto;}
-.pv-support{flex-direction:column;align-items:flex-start;}
+.pv-card-footer-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid var(--pv-border);
+  color: var(--pv-accent);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none !important;
+  transition: gap 0.2s ease;
+}
+.pv-card-footer-link:hover svg {
+  transform: translateX(4px);
+}
+.pv-card-footer-link svg {
+  transition: transform 0.25s ease;
+}
+.pv-card {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 36px;
+  border-radius: 24px;
+  text-decoration: none !important;
+  background: var(--pv-bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--pv-border);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.03);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.pv-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--pv-border-hover);
+  background: rgba(253, 140, 229, 0.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 25px rgba(253, 140, 229, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+}
+.pv-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.pv-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  padding: 0 12px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+  transition: all 0.25s ease;
+}
+.pv-card:hover .pv-card-icon,
+.pv-card-step:hover .pv-card-icon {
+  background: rgba(253, 140, 229, 0.1);
+  border-color: rgba(253, 140, 229, 0.2);
+  color: var(--pv-accent);
+}
+.pv-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--pv-text-muted);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.pv-card:hover .pv-arrow {
+  transform: translateX(4px);
+  color: var(--pv-accent);
+}
+.pv-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.pv-card h3,
+.pv-card-step h3 {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+  color: #ffffff;
+}
+.pv-card p,
+.pv-card-step p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--pv-text-muted);
+}
+.pv-support {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  margin-top: 40px;
+  padding: 36px;
+  border-radius: 24px;
+  text-decoration: none !important;
+  background: linear-gradient(90deg, var(--pv-bg-card) 0%, rgba(25, 20, 25, 0.4) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--pv-border);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.pv-support:hover {
+  transform: translateY(-2px);
+  border-color: var(--pv-border-hover);
+  background: linear-gradient(90deg, rgba(253, 140, 229, 0.02) 0%, var(--pv-bg-card) 100%);
+}
+.pv-support-content {
+  flex: 1;
+}
+.pv-support span {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--pv-text-muted);
+  text-transform: uppercase;
+}
+.pv-support h3 {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+  color: #ffffff;
+}
+.pv-support p {
+  margin: 10px 0 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--pv-text-muted);
+}
+.pv-support-arrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: none;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--pv-accent);
+  transition: all 0.25s ease;
+}
+.pv-support-arrow svg {
+  transition: transform 0.25s ease;
+}
+.pv-support:hover .pv-support-arrow svg {
+  transform: translateX(4px);
+}
+@media (max-width: 1200px) {
+  .pv-hero {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    padding: 40px 0 20px;
+    text-align: center;
+  }
+  .pv-actions {
+    justify-content: center;
+  }
+  .pv-subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .pv-preview-wrap {
+    max-width: 540px;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 780px) {
+  .pv-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .pv-card,
+  .pv-card-step {
+    padding: 28px;
+  }
+  .pv-support {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 28px;
+  }
+  .pv-support-arrow {
+    width: 100%;
+    justify-content: space-between;
+    border-top: 1px solid var(--pv-border);
+    padding-top: 16px;
+  }
 }
 </style><div class="docsify-pagination-container"></div></article></section></main>
 <script>
