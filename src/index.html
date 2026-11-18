@@ -5,10 +5,9 @@
 	<meta charset="UTF-8" />
 	<title>PDF Viewer</title>
 	<link rel="shortcut icon" href="https://pandoa.github.io/PDFViewer/_media/favicon.png" />
-	<meta name="keywords" content="doc,docs,documentation,PDF,Viewer,features,unreal,engine" />
+	<meta name="keywords" content="ue,plugin,pdf,ue5,doc,docs,documentation,PDF,Viewer,features,unreal,engine" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<meta name="description"
-		content="Documentation for the PDF Viewer plugin available on the Unreal Engine Marketplace.">
+	<meta name="description" content="Documentation for the PDF Viewer plugin available on the Unreal Engine Marketplace.">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 	<meta property="og:title" content="PDFViewer Documentation" />
 	<meta property="og:type" content="website" />
@@ -40,8 +39,93 @@
 		}
 	</script>
 	<style>
+  :root {
+    --bar-h: 52px;
+    --bg: #1a1a1a;
+    --bg-2: #161616;
+    --border: #2a2a2a;
+    --text: #ddd;
+    --muted: #888;
+  }
+  body { margin: 0; padding-top: var(--bar-h); background: var(--bg); color: var(--text); }
+
+  .app-nav.app-nav {
+    position: fixed !important;
+    top: 0; left: 0; right: 0;
+    margin: 0 !important;
+    padding: 0 24px;
+    height: var(--bar-h);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Logo + site name, left, clickable */
+  .app-nav .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 16px;
+    text-decoration: none;
+    margin-right: auto;
+  }
+  .app-nav .brand img {
+    width: 28px;
+    height: 28px;
+    display: block;
+  }
+
+  /* Links, right */
+  .app-nav ul {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    margin: 0 !important;
+    padding: 0;
+    list-style: none;
+  }
+  .app-nav ul li a {
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color .15s;
+  }
+  .app-nav ul li a:hover,
+  .app-nav ul li a.active { color: #fff; }
+
+  .app-nav ul li a[target="_blank"]::after {
+    content: "";
+    display: inline-block;
+    width: .7em; height: .7em;
+    margin-left: 5px;
+    vertical-align: -0.05em;
+    background-color: currentColor;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/%3E%3Cpolyline points='15 3 21 3 21 9'/%3E%3Cline x1='10' y1='14' x2='21' y2='3'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/%3E%3Cpolyline points='15 3 21 3 21 9'/%3E%3Cline x1='10' y1='14' x2='21' y2='3'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    top: var(--bar-h) !important;
+    height: calc(100vh - var(--bar-h)) !important;
+    padding-top: 8px !important;
+    background: var(--bg-2);
+    border-right: 1px solid var(--border);
+  }
+  .sidebar .app-name { display: none; }
+  .sidebar-nav { padding: 12px 0 24px; }
+  .sidebar ul li a { color: var(--muted); font-size: 14px; }
+  .sidebar ul li a:hover,
+  .sidebar ul li.active > a { color: #fff; }
+</style>
+	<style>
 		:root {
-			--theme-color: #70a2ff
+			--theme-color: #70a2ff;
 		}
 
 		html,
@@ -322,7 +406,7 @@
 			left: 0;
 			transition: transform .25s ease-out;
 			width: 300px;
-			z-index: 20
+			z-index: 20;
 		}
 
 		.sidebar>h1 {
@@ -780,9 +864,8 @@
 			color: var(--theme-color, #ea6f5a)
 		}
 
-		.sidebar,
 		body {
-			background-color: #3f3f3f
+			background-color: #000
 		}
 
 		.sidebar {
@@ -1095,7 +1178,7 @@
 		}
 
 		.sidebar {
-			background-color: #202020
+			background-color: #080808
 		}
 
 		textarea {
@@ -1215,7 +1298,7 @@
 
 		.sidebar-toggle {
 			width: 300px;
-			background: #555;
+			background: #070707;
 			transition: width 0.2s linear
 		}
 
@@ -1306,6 +1389,17 @@
 			.sidebar-toggle {
 				width: auto
 			}
+		}
+
+		.pv-button-icon {
+			border-radius: 0;
+			box-shadow: none;
+			border: none;
+		}
+
+		a.pv-button-secondary {
+			font-weight: bold;
+			text-transform: uppercase;
 		}
 
 		.cpp>pre,
@@ -1680,7 +1774,7 @@
 
 </head>
 
-
+<body>
 <script>
 	function copyBlueprintCode(button) {
 		button.innerHTML = "Copied!";
@@ -1767,12 +1861,27 @@
 	window.$docsify = {
 		name: 'PDF Viewer',
 		loadSidebar: true,
+		loadNavbar: true,
 		executeScript: true,
 		subMaxLevel: 3,
 		pagination: {
 			crossChapter: true,
 			crossChapterText: true,
-		}
+		},
+			plugins: [
+  function (hook) {
+    hook.doneEach(function () {
+      var nav = document.querySelector('.app-nav');
+      if (nav && !nav.querySelector('.brand')) {
+        var a = document.createElement('a');
+        a.className = 'brand';
+        a.href = 'https://pandoa.github.io/PDFViewer/';
+        a.innerHTML = '<img style="border:none;box-shadow:none;" src="https://pandoa.github.io/PDFViewer/_media/favicon.png" alt="PDF Viewer logo for Unreal Engine">PDF Viewer';
+        nav.insertBefore(a, nav.firstChild);
+      }
+    });
+  }
+],
 	}
 </script>
 <script class="delete-static">
@@ -1799,6 +1908,12 @@
 		"UPDFDocument",
 		"Super",
 		"UAppOpenAd",
+		"USVGAsset",
+		"FSVGDocument",
+		"TUniquePtr",
+		"USVGDocument",
+		"UImage",
+		"UMaterialInstanceDynamic",
 		"EAdMobError",
 		"FAdMobAdRequest",
 		"FVector2D",
@@ -1867,6 +1982,30 @@
 			});
 		})();
 </script>
+	<script>
+  (function () {
+    const shouldLoadAnalytics =
+      window.puppeteer !== true &&
+      !navigator.webdriver &&
+      location.hostname !== 'localhost' &&
+      location.hostname !== '127.0.0.1';
+    if (!shouldLoadAnalytics) {
+      return;
+    }
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https' + '://www.googletagmanager.com/gtag/' + 'js' + '?' + 'id' + '=G-EGXMT0XTHL';
+    script.onload = function () {
+      gtag('config', 'G-EGXMT0XTHL');
+    };
+    document.head.appendChild(script);
+  })();
+</script>
 </body>
-
 </html>

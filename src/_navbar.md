@@ -1,2 +1,4 @@
-- Translations
-  - [:uk: English](/)
+- [Get Started](/umg)
+- [Support](/support)
+- [Download Plugin](https://www.fab.com/listings/4b675d25-f2f9-4537-b2f3-5406b846f6ac ':target=_blank')
+- [Discord](https://discord.gg/9dzAucgAS9 ':target=_blank')

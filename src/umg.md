@@ -8,14 +8,14 @@ Start by creating a widget blueprints. Right click in the content browser and se
 
 <div class="centered">
 
-![](./_images/CreateWidget.png)
+![Create an empty UMG widget](./_images/CreateWidget.png)
 </div>
 
 Give a name to the newly created widget.
 
 <div class="centered">
 
-![](./_images/NameWidget.png)
+![Give a name to a UMG widget](./_images/NameWidget.png)
 </div>
 
 Double click on the widget to open the Widget Editor, and add an image inside the widget. This image will render the PDF page.
